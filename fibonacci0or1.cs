@@ -19,7 +19,7 @@ public class Lecture
 			arr[1,1] = 1;
 			int test = int.Parse(Console.ReadLine());
 			for(int i = 2; i <= test; i++){
-				arr[i,0] = arr[i-1, 0] + arr[i-2, 0];S
+				arr[i,0] = arr[i-1, 0] + arr[i-2, 0];
 				arr[i,1] = arr[i-1, 1] + arr[i-2, 1];
 			}
 			Console.WriteLine(arr[test, 0] + " " + arr[test, 1]);
