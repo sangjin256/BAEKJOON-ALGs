@@ -1,3 +1,5 @@
+//인접 리스트
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -19,6 +21,7 @@ public class Lecture
 		adj_l[4].Add(1);
 		
 		AdjacencyList(10, true);
+        //(b,w)는 b로 가는 가중치가 w인 간선을 의미
 		adj_lw[1].Add(new Tuple<int,int>(2,5));
 		adj_lw[2].Add(new Tuple<int,int>(3,7));
 		adj_lw[2].Add(new Tuple<int,int>(4,6));
