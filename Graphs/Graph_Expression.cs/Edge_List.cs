@@ -18,7 +18,7 @@ public class Lecture
 		edges.Add(new Tuple<int,int>(3,4));
 		edges.Add(new Tuple<int,int>(4,1));
 		
-		//(a,b,w)는 a에서 b로 가는 가중치가 w인 간선을 위미
+		//(a,b,w)는 a에서 b로 가는 가중치가 w인 간선을 의미
 		edges_w.Add(new Tuple<int,int,int>(1,2,5));
 		edges_w.Add(new Tuple<int,int,int>(2,3,7));
 		edges_w.Add(new Tuple<int,int,int>(2,4,6));
