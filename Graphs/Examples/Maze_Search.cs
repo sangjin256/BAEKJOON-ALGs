@@ -50,7 +50,7 @@ public class Lecture
 		}	
 		bfs(1,1);
 		
-		Console.WriteLine(distance[arr[0]-1,arr[1]-1]);
+		Console.WriteLine(distance[arr[0],arr[1]]);
 	}
 		
 	
@@ -72,10 +72,10 @@ public class Lecture
 				int nx = v + dx[i];
 				int ny = z + dy[i];
 				
-                //가로세로 길이가 다르므로 GetLength(0)과 GetLength(1)해줘야한다!
 				if(nx>=1&&ny>=1&&nx<adj.GetLength(0)&&ny<adj.GetLength(1)){
 					if(!visited[nx,ny]&&adj[nx,ny]==1){
 						distance[nx,ny] = distance[v,z] + 1;
+						visited[nx,ny] = true;
 						q.Enqueue((nx,ny));
 					}
 				}
