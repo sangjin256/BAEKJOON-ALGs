@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 public class Lecture 
 {
-	static List<List<int>> adj = new List<List<int>>();
+	static List<int>[] adj;
 	public static void Main(string[] args) {
+		AdjacencyList(5, false);
 		adj[1].Add(2);
 		adj[2].Add(3);
 		adj[2].Add(4);
@@ -22,6 +23,16 @@ public class Lecture
 		//노드 s 처리
 		foreach(var u in adj[s]){
 			dfs(u);
+		}
+	}
+
+	public static void AdjacencyList(int length, bool isWeight){
+		if(isWeight == false){
+			adj = new List<int>[length];
+			
+			for(int i = 0; i < length; i++){
+				adj[i] = new List<int>();
+			}
 		}
 	}
 }
