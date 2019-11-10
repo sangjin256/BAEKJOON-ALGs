@@ -15,6 +15,7 @@ public class Lecture
 	//가중치x그래프에서는 간선이 있으면 1, 없으면 0
 	//가중치o그래프에서는 간선이 있으면 가중치를 적고 없으면 0
 	public static void AdjacencyMatrix(int length){
-		adj = new int[length, length];
+		//노드가 1~5의 5개이면 숫자 5까지 들어가야하기 때문에 length를 +1한다.
+		adj = new int[length+1, length+1];
 	}
 }
