@@ -17,19 +17,25 @@ public class Lecture
 		InsertEdge(4,5,2);
 		
 		distance = new int[10];
+        distance_m = new int[10];
 		
 		for(int i = 1; i <= 5; i++){
+            //최단경로찾기 거리 초기화
 			distance[i] = int.MaxValue-1000;
+            //음수사이클찾기 거리 초기화
+            distance_m[i] = int.MaxValue-1000;
 		}
 		
 		//시작노드 1을 입력해주고 시작
 		BellmanFord(1);
+		BellmanFord_FindMinus(1);
 		
 		for(int i = 0; i < distance.Length; i++){
 			if(distance[i] != 0){
 				Console.WriteLine(i + " : " + distance[i]);
 			}
 		}
+		Console.WriteLine(str);
 	}
 	
 	//양방향 그래프일때 간선으로 연결된 노드 2개를 넣으면 양 방향으로 추가되게 하는 함수
@@ -56,4 +62,24 @@ public class Lecture
 			}
 		}
 	}
+
+    static string str = "음수 사이클 없음";
+    static int[] distance_m;
+    //음수사이클 찾는 함수
+    public static void BellmanFord_FindMinus(int x){
+		distance[x] = 0;
+		//n번의 라운드로 진행하고 마지막 라운드에서도 거리가 줄어드면 음수 사이클 존재
+		for(int i = 1; i <= 5; i++){
+			foreach(var e in edges){
+				(int a,int b,int w) p = e;
+				int temp = Math.Min(distance_m[p.b], distance_m[p.a]+p.w);
+				if(distance_m[p.b] > temp){
+                    if(i == 5){
+                        str = "음수 사이클 존재";                        
+                    }
+				}
+                distance_m[p.b] = temp;
+			}
+		}
+    }
 }
