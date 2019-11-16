@@ -7,7 +7,7 @@ public class Lecture
 	//토마토가 들어있는 격자모양 창고
 	static int[,] adj;
 	//몇일이 지났는지 count
-	static int count = -1;
+	static int count = 0;
     //위아래양옆을 체크하기 위한 배열
 	static int[] dx = {0,0,-1,1};
 	static int[] dy = {1,-1,0,0};
