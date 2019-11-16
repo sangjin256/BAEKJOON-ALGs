@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+# 7569
+
+토마토 문제의 3D 버전
+*/
+using System;
 using System.IO;
 using System.Collections.Generic;
 public class Lecture
