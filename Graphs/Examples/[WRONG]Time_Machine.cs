@@ -29,53 +29,47 @@ public class Lecture
         bool cycle = false;
         //음수 사이클이 있는 경우 그 노드를 배열에 넣음
         List<int> mcycle = new List<int>();
-        //간선 줄어들었는지 체크
-        int count = 0;
         //라운드
         for(int i = 1; i <= arr[0]; i++){
-            //계산 시간을 단축하기 위해 한 라운드동안 줄어드는 거리가 없으면 종료한다.
-            count = 0;
             //노드
-            for(int j = 1; i <= arr[0]; j++){
-                //그 노드에서 이어지는 간선 수
-                foreach(var u in adj[j]){
-                    int b = u.Item1;
-                    int w = u.Item2;
-                    if(distance[b] > distance[j] + w){
-                        distance[b] = distance[j] + w;
-                        count++;
-                        //마지막 라운드에서 거리가 줄어들면 음수사이클ㅇ이므로 저장
-                        if(i == arr[0]){
-                            mcycle.Add(j);
-                        }
-                    }
+            for(int j = 1; j <= arr[0]; j++){
+                if(adj[j] != null){
+                	//그 노드에서 이어지는 간선 수
+                	foreach(var u in adj[j]){
+                    	int b = u.Item1;
+                    	int w = u.Item2;
+                    	if(distance[b] > distance[j] + w){
+                    		//최댓값 + 가중치는 최댓값이므로 계산하지 않는다.
+                        	if(distance[j] != 10000*(arr[0])+1){
+                        		distance[b] = distance[j] + w;
+                        	}
+                        	//마지막 라운드에서 거리가 줄어들면 음수사이클ㅇ이므로 저장
+                    		if(i == arr[0]){
+                            	mcycle.Add(j);
+                        	}
+                		}
+                	}
                 }
             }
-            //한 라운드에서 가중치가 한번도 안줄어줄었을 경우 종료
-            if(count == 0) break;
         }
-        //마지막 라운드에서도 가중치가 줄어들었다면 음수 사이클 존재
-        if(count != 0) cycle = true;
-
-        //음수사이클이 존재하고 그게 1과 이어진 사이클이라면 -1출력
-        if(cycle == true && adj[1] != null){
+        //1부터가는 경로에 음수 사이클이 포함되어있으면 -1출력
+        if(mcycle.Count != 0){
             foreach(var u in adj[1]){
                 int b = u.Item1;
                 foreach(var c in mcycle){
                     if(b == c){
                         Console.WriteLine("-1");
                         return;
-                    }
+                	}
                 }
             }
-        } else{
-            for(int i = 2; i <= arr[0]; i++){
-                //경로가 없으면 -1 출력
-                if(distance[i] == 10000*(arr[0])+1){
-                    Console.WriteLine("-1");
-                }
-                else Console.WriteLine(distance[i]);
-            } 
         }
-    }
+        for(int i = 2; i <= arr[0]; i++){
+        	//경로가 없으면 -1 출력
+            if(distance[i] == 10000*(arr[0])+1){
+                Console.WriteLine("-1");
+            }
+            else Console.WriteLine(distance[i]);
+        }
+	}
 }
