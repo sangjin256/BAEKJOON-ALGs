@@ -16,9 +16,8 @@ public class Lecture
 	static List<(int,int)>[] adj;
 	static long[,] dist;
 	public static void Main(string[] args) {
-        //도시의 개수
+	
         int n = int.Parse(Console.ReadLine());
-        //버스의 개수
         int k = int.Parse(Console.ReadLine());
         adj = new List<(int,int)>[n+1];
         for(int i = 0; i <= n; i++){
@@ -32,7 +31,7 @@ public class Lecture
         //dist 배열 초기화
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= n; j++){
-                dist[i,j] = 100000 * k + 1;
+                dist[i,j] = 9900000000;
             }
         }
         for(int i = 1; i <= n; i++){
@@ -48,7 +47,7 @@ public class Lecture
         for(int t = 1; t <= n; t++){
             for(int i = 1; i <= n; i++){
                 for(int j = 1; j <= n; j++){
-                	if(dist[i,t] != (100000 * k + 1) && dist[t,j] != (100000 * k + 1))
+                	if(dist[i,t] != (9900000000) && dist[t,j] != (9900000000))
                     	dist[i,j] = Math.Min(dist[i,j],dist[i,t] + dist[t,j]);
                 }
             }
@@ -57,8 +56,14 @@ public class Lecture
         //출력
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= n; j++){
-            	if(dist[i,j] == (100000 * k + 1)) Console.Write(0 + " ");
-                else Console.Write(dist[i,j]+" ");
+            	if(j == 1){
+            		if(dist[i,j] == 9900000000) Console.Write(0);
+                	else Console.Write(dist[i,j]);
+            	}
+            	else{
+            		if(dist[i,j] == 9900000000) Console.Write(" " + 0);
+                	else Console.Write(" " + dist[i,j]);            		
+            	}
             }
             Console.WriteLine();
         }
