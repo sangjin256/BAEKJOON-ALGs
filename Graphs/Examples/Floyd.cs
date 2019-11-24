@@ -36,7 +36,6 @@ public class Lecture
             }
         }
         for(int i = 1; i <= n; i++){
-            //자기자신과의 만남은 없으므로 -1로 둔다.
             dist[i,i] = 0;
             foreach(var u in adj[i]){
                 int b = u.Item1; long w = u.Item2;
