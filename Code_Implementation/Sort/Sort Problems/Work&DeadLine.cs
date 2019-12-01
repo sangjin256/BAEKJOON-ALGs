@@ -7,7 +7,6 @@ using System.Linq;
 
 public class Lecture 
 {
-    static int[] a;
 	public static void Main(string[] args) {
         //소요시간이 짧은 순으로 스케쥴해야 최적해
         List<(int,int)> list = new List<(int,int)>();
