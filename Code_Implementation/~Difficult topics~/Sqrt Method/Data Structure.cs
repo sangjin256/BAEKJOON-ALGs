@@ -29,7 +29,9 @@ public class Lecture
         int a = 3, b = 13;
         mn = 10000;
         for(int i = 0; i < rootn; i++){
+            //구간 안에 블록이 포함되어 있으면 그 부분은 원소 개별값이 아니라 블록을 비교해준다.
             if(a <= rootn*i && b >= rootn*(i+1)) mn = Math.Min(mn,blocks[i]);
+            //위에서 처리한 블록을 제외한 구간은 개별적으로 비교해준다.
             else if(a > rootn*i){
                 for(int k = a; k < rootn*(i+1); k++){
                     mn = Math.Min(mn, arr[k]);
