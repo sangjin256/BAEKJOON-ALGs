@@ -22,8 +22,9 @@ public class Lecture
         }
 
         parent = new int[n+1];
+        visited = new int[n+1];
 		
-		Dfs(1,0);
+		Bfs(1);
 
         for(int i = 2; i < parent.Length; i++){
             Console.WriteLine(parent[i]);
@@ -32,12 +33,21 @@ public class Lecture
 
     //각 노드별로 부모노드를 담는 배열을 생성한다.
     static int[] parent;
+    static bool[] visited;
 
-    //dfs를 활용하여 부모노드 번호를 출력한다.
-    public static void Dfs(int s, int e){
-        foreach(var u in adj[s]){
-            if(u != e) Dfs(u,s);
-            parent[u] = s;
+    //bfs를 활용하여 부모노드 번호를 출력한다.
+    public static void Bfs(int x){
+        Queue<int> q = new Queue<int>();
+        q.Push(x);
+        visited[x] = true;
+        while(q.Count != 0){
+            int s = q.Dequeue();
+            foreach(var u in adj[s]){
+                if(visited[u]) continue;
+                visited[u] = true;
+                parent[u] = s;
+                q.Enqueue(u);
+            }
         }
     }
     //인접 리스트 초기화
