@@ -24,6 +24,9 @@ public class Lecture
             return result;
         }
         //m이 소수이면 페르마 소정리 적용
+        //페르마 소정리를 적용해서
+        //x^n mod m = x^(n mod (m-1)) mod m으로 변형 가능
+        //그러면 n이 매우 큰 경우 x^n의 값을 구할 때 사용 가능
         else{
             foreach(var c in Coprime(n)){
                 if(Math.Pow(c, n-1) % n != 1) result = false;
