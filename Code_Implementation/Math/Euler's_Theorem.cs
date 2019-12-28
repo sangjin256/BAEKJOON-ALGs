@@ -53,12 +53,17 @@ public class Lecture
     public static int EulerTotientFunction(int n){
         //기본적으로 가지고있는 인수인 1은 n과 서로소이므로 추가해놓는다.
         int sum = 1;
+        //Factors(n)은 소인수의 리스트가 들어있는 함수라 n=20일 때,
+        //2,2,5가 들어가서 2가 중복된다. 중복을 방지하기 위해 temp 변수를 만든다.
+        int temp = 0;
         foreach(var c in Factors(n)){
-            sum *= (int)Math.Pow(c, a[c]-1)*(c-1);
+        	if(temp != c) sum *= (int)Math.Pow(c, a[c]-1)*(c-1);
+        	temp = c;
         }
         return sum;
     }
 
+    //소인수분해의 지수도 알아야 하므로 배열로 구분한다.
     static int[] a; // 지수
     public static List<int> Factors(int n){
         List<int> f = new List<int>();
@@ -78,5 +83,4 @@ public class Lecture
         }
         return f;
     }
-
 }
