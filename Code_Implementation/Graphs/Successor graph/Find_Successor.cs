@@ -43,11 +43,15 @@ public class Lecture
         }
         
         //실제로 원하는 값 계산 4에서 11칸 움직이기
-        int temp = succ[4,1];
-        for(int i = 2; i <= 11; i<<=1){
-        	if((11&i) != 0){
-        		temp = succ[temp,i];
-        	}
+        int temp = 4;
+        int n = 11;
+        for(int i = 1; n != 0; i++){
+        	//정수 x의 모든 비트를 0으로 바꾸되 비트 1 중에서 제일 오른쪽 것 하나만
+        	//남기는 공식
+        	int k = n&(-n);
+        	temp = succ[temp,k];
+        	n = n-k;
+        	
         }
         Console.WriteLine(temp);
     }
