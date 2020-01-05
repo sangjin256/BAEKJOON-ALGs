@@ -51,11 +51,11 @@ public class Lecture
         visited[s] = true;
         processing[s] = true;
         foreach(var u in adj[s]){
-            Dfs(u);
             if(processing[u]){
             	Impossible = true;
                 break;
             }
+            Dfs(u);
         }
         //처리가 끝난 노드를 리스트에 넣어준다.
         topol.Add(s);
