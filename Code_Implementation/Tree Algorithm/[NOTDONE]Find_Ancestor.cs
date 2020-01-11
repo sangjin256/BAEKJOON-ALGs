@@ -16,6 +16,7 @@ public class Lecture
 
         public Node(int data){
             this.data = data;
+            Parent = null;
         }
 
         public bool isLeaf(){
@@ -29,49 +30,46 @@ public class Lecture
 
     public class Tree{
         public Node root;
-        public Node child;
 
-        public void Add(int data, int children){
+        public void Add(int data, params int[] children){
             if(root == null){
                 root = new Node(data);
-                if(!root.children.Contains(new Node(children))){
-                    child = new Node(children);
-                    root.children.Add(child);
-                    child.Parent = root;
+                for(int i = 0; i < children.Length; i++){
+                    root.children.Add(new Node(children[i]));
+                    root.children[i].Parent = root;
                 }
             }
             else{
-                Search(root, child, data, children);
+                Search(root, data, children);
             }
         }
 
-        public void Search(Node root, Node child, int data, int children){
+        public void Search(Node root, int data, int[] children){
             if(root == null) return;
             else if(root.data == data){
-                if(!root.children.Contains(new Node(children))){
-                    child = new Node(children);
-                    root.children.Add(child);
-                    child.Parent = root;
+                for(int i = 0; i < children.Length; i++){
+                    root.children.Add(new Node(children[i]));
+                    root.children[i].Parent = root;
                 }
             }
             else{
                 foreach(var c in root.children){
-                    Search(c, child, data, children);
+                    Search(c, data, children);
                 }
             }
         }
 
         public Node Find(Node root, int data){
-            if(root == null) return new Node(0);
+            if(root == null) return null;
             else if(root.data == data) return root;
             else{
                 if(root.children.Count != 0){
                     foreach(var c in root.children){
                         Find(c, data);
                     }
-                    return new Node(0);
+                    return null;
                 }
-                else return new Node(0);
+                else return null;
             }
         }  
 
@@ -79,7 +77,7 @@ public class Lecture
             Console.WriteLine(Find(this.root, data).Parent.data);
         }
 
-        public void GetChildren(int data){
+        public void GetChild(int data){
             foreach(var c in Find(this.root, data).children){
                 Console.WriteLine(c.data);
             }
@@ -87,15 +85,12 @@ public class Lecture
     }
 	public static void Main(string[] args) {
         Tree tree = new Tree();
-        tree.Add(1,4);
-        tree.Add(1,5);
-        tree.Add(1,2);
-        tree.Add(4,3);
-        tree.Add(4,7);
-        tree.Add(7,8);
-        tree.Add(2,6);
+        tree.Add(1, new int{4,5,2});
+        tree.Add(4, new int{3,7});
+        tree.Add(7, new int{8});
+        tree.Add(2, new int{6});
 
-        tree.GetChildren(4);
+        tree.GetChild(4);
         tree.GetParent(8);
     }
 }
