@@ -34,12 +34,7 @@ public class Lecture
     public static void Add(int a, int b, int x){
         diff[a] += x;
         diff[b+1] -= x;
-        Changed();
-    }
-
-    public static void Changed(){
-        arr[0] = diff[0];
-        for(int i = 1; i < arr.Length; i++){
+        for(int i = a; i <= b; i++){
             arr[i] = arr[i-1] + diff[i];
         }
     }
