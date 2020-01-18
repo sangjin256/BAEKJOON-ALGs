@@ -19,8 +19,8 @@ public class Lecture
 	static int[,] modpow(int[,] x, int n){
 		if(n == 0 || n == 1) return x;
 		int[,] u = modpow(x, n/2);
-		u = repeted_squared(u, u);
-		if(n%2 == 1) u = repeted_squared(u, x);
+		u = repeated_squared(u, u);
+		if(n%2 == 1) u = repeated_squared(u, x);
 		return u;
 	}
 	
@@ -37,7 +37,7 @@ public class Lecture
 		return c;
 	}
 	//행렬을 거듭제곱하기위한 함수
-	static int[,] repeted_squared(int[,] x, int[,] y){
+	static int[,] repeated_squared(int[,] x, int[,] y){
 		int n = x.GetLength(0);
 		int[,] c = new int[n,n];
 		for(int i = 0; i < n; i++){
