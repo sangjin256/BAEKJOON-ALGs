@@ -19,6 +19,9 @@ public class Lecture
     //같은 강결합 컴포넌트에 속해있는 노드
     static int[] sn;
 
+    //강결합 컴포넌트가 들어갈 리스트
+    static List<int>[] sc;
+
     static List<int> tmp = new List<int>();
 
     //sc 리스트에 쓸 count
@@ -74,7 +77,7 @@ public class Lecture
         nvisited = new bool[adj.Length];
         
         for(int i = list.Count-1; i >= 0; i--){
-            if(!nvisited[list[i]]&&(list[i] != 0)){
+            if(!nvisited[list[i]]){
                 Ndfs(list[i]);
                 count++;
             }
@@ -103,12 +106,13 @@ public class Lecture
             Ndfs(u);
         }
         sn[s] = count;
+        sc[count].Add(s);
     }
 
     
 
     public static void ReverseAdj(){
-        for(int i = 1; i < adj.Length; i++){
+        for(int i = 0; i < adj.Length; i++){
             foreach(var u in adj[i]){
                 nadj[u].Add(i);
             }
@@ -119,9 +123,11 @@ public class Lecture
         sn = new int[n+1];
         adj = new List<int>[n+1];
         nadj = new List<int>[n+1];
+        sc = new List<int>[n+1];
         for(int i = 0; i <= n; i++){
             adj[i] = new List<int>();
             nadj[i] = new List<int>();
+            sc[i] = new List<int>();
         }
     }
 #endregion
