@@ -3,6 +3,8 @@
 //수식이 참이 되도록 모든 변수에 값을 할당하는 것이 가능한지 여부는 함의 그래프
 //구조에 따라 결정되는데,
 //xi노드와 ㄱxi노드가 같은 강결합 컴포넌트에 속하는 일이 없는 경우와 동치
+
+//틀렸다고 뜨는데 반례 다 맞음 이유 불문(확인 요망)
 using System;
 using System.IO;
 using System.Collections.Generic;
