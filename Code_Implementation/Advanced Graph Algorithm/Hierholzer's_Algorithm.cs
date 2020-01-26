@@ -21,6 +21,9 @@ public class Lecture
     static List<int>[] adj;
     //처음에 노드만 하나 있고 간선이 없는 빈 회로를 만들 그래프
     static List<int>[] nadj;
+    
+    //차수의 개수
+    static int[] degree;
     public static void Main(string[] args) {
         AdjacencyInit(7);
         AddNode(1,2);
@@ -35,22 +38,33 @@ public class Lecture
         AddNode(6,7);
 
         for(int i = 1; i < adj.Length; i++){
+            if(!(adj[i].Count == degree[i])) Dfs(i, i);
+        }
+        
+		for(int i = 1; i < nadj.Length; i++){
+        	Console.WriteLine(degree[i]);
+        	Console.Write(i + " : ");
+        	
+        	foreach(var c in nadj[i]){
+        		Console.Write(c + " ");
+        	}
+        	Console.WriteLine();
         }
     }
 
-    static bool[] visited;
-
-    public static void Dfs(int s){
-        visited[s] = true;
-        Console.WriteLine(s);
+    public static void Dfs(int s, int x){
         foreach(var u in adj[s]){
-            if(visited[u]) return;
+            if(nadj[u].Contains(s) || nadj[s].Contains(u)) continue;
             nadj[s].Add(u);
-            Dfs(u);
+            //각각 간선이 생기므로 차수를 1개씩 올려준다.
+            degree[s]++; degree[u]++;
+            if(!(u==x)) Dfs(u, x);
+            return;
         }
     }
+    
     public static void AdjacencyInit(int n){
-        visited = new bool[n+1];
+        degree = new int[n+1];
         adj = new List<int>[n+1];
         nadj = new List<int>[n+1];
         for(int i = 1; i < adj.Length; i++){
@@ -61,7 +75,6 @@ public class Lecture
 
     public static void AddNode(int a, int b){
         adj[a].Add(b);
-        adj[b].Add(b);
+        adj[b].Add(a);
     }
-
 }
