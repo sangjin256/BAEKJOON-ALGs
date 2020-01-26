@@ -17,24 +17,73 @@ public class Lecture
 {
     //체스판
     static int[,] chess;
-    //나이트가 간 자리의 순서를 표시할 변수
-    static int number = 1;
-
+    
     static int[] dx = new int[]{-1, -1, 1, 1, -2, -2, 2, 2};
     static int[] dy = new int[]{2, -2, 2, -2, 1, -1, 1, -1};
     public static void Main(string[] args) {
         //5*5체스판으로 가정
         chess = new int[5,5];
+  
+        chess[0,0] = 1;
+        KnightTour(0,0,1);
+
+        for(int i = 0; i < chess.GetLength(0); i++){
+            for(int j = 0; j < chess.GetLength(0); j++){
+                Console.Write(chess[i,j] + " ");
+            }
+            Console.WriteLine();
+        }
     }
 
-    public void KnightTour(int x, int y, int count){
-        if(count == chess.GetLength(0) * chess.GetLength(0)){
-            chess[x,y] = number;
-            return;
+    public static bool KnightTour(int x, int y, int count){
+    	int max = chess.GetLength(0);
+        if(count == max*max){
+            chess[x,y] = count;
+            return true;
         }
-        for(int i = 1; i <= 2; i++){
-            for(int j = 2; j >= 1; j--){
-                int nx = x 
+
+        int minVal = dx.Length;
+        int minIdx = 0;
+		
+		int nx;
+		int ny;
+        for(int i = 0; i < dx.Length; i++){
+            nx = x + dx[i];
+            ny = y + dy[i];
+            int val = 0;
+            if(ChkSafe(nx,ny)){
+                for(int j = 0; j < dx.Length; j++){
+                    int tx = nx + dx[j];
+                    int ty = ny + dy[j];
+                    if(ChkSafe(tx, ty)){
+                        val++;
+                    }
+                }
+
+                if(minVal > val){
+                    minVal = val;
+                    minIdx = i;
+                }
             }
+        }
+        nx = x + dx[minIdx];
+        ny = y + dy[minIdx];
+        
+        if(ChkSafe(nx,ny)){
+            chess[x,y] = count;
+            //++count는 count 자체에 +1더하고 대입하는거고 count+1은 그냥 count에 1을 더한 식이다.
+            //엄연히 다르므로 헷갈리지말자
+            if(KnightTour(nx,ny,count+1)) return true;
+            else chess[x,y] = 0;
+        }
+        return false;
+    }
+
+    static bool ChkSafe(int x, int y)
+    {
+        if ((0 <= x && x < chess.GetLength(0)) && (0 <= y && y < chess.GetLength(0)) && (chess[x,y] == 0)){
+            return true;
+        }
+        return false;
     }
 }
