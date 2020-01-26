@@ -22,7 +22,7 @@ public class Lecture
     static int[] dy = new int[]{2, -2, 2, -2, 1, -1, 1, -1};
     public static void Main(string[] args) {
         //5*5체스판으로 가정
-        chess = new int[5,5];
+        chess = new int[8,8];
   
         chess[0,0] = 1;
         KnightTour(0,0,1);
@@ -69,13 +69,13 @@ public class Lecture
         nx = x + dx[minIdx];
         ny = y + dy[minIdx];
         
-        if(ChkSafe(nx,ny)){
-            chess[x,y] = count;
-            //++count는 count 자체에 +1더하고 대입하는거고 count+1은 그냥 count에 1을 더한 식이다.
-            //엄연히 다르므로 헷갈리지말자
-            if(KnightTour(nx,ny,count+1)) return true;
-            else chess[x,y] = 0;
-        }
+        //위에서 이미 체크했기 때문에 또 ChkSafe를 해줄 필요 없다.
+        chess[x,y] = count;
+        //++count는 count 자체에 +1더하고 대입하는거고 count+1은 그냥 count에 1을 더한 식이다.
+        //엄연히 다르므로 헷갈리지말자
+        if(KnightTour(nx,ny,count+1)) return true;
+        else chess[x,y] = 0;
+        
         return false;
     }
 
