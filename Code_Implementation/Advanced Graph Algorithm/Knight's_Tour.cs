@@ -24,15 +24,33 @@ public class Lecture
     //배열의 index에는 현재 위치의 좌표가 들어가고 그 좌표의 리스트에는
     //갈수 있는 좌표와 그 좌표에서 갈 수 있는 위치의 개수가 들어간다.
     static List<(int,int,int)>[,] list;
+
+    //체스가 몇*몇인지
+    static int n;
     
     public static void Main(string[] args) {
         //5*5체스판으로 가정
-        chess = new int[5,5];
+        n = 5;
+
+        chess = new int[n,n];
+
+        //시작지점
+        int x = 0;
+        int y = 0;
+        int startx = x;
+        int starty = y;
+
+        chess[x,y] = 1;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+            	KnightTour(ref x, ref y);
+            }
+        }
         
-        Init(5);
-  
-        chess[0,0] = 1;
-        KnightTour(0,0,1);
+        if(IsClosed(x,y,startx,starty)){
+            Console.WriteLine("닫힌 나이트 투어");
+        }
+        else Console.WriteLine("열린 나이트 투어");
 
         for(int i = 0; i < chess.GetLength(0); i++){
             for(int j = 0; j < chess.GetLength(0); j++){
@@ -42,74 +60,63 @@ public class Lecture
         }
     }
 
-    //리스트 만들기를 건너뛸지를 체크할 배열
-    //한번 만들었으면 건너뛴다.
-    static bool[,] IsFinished;
+    //범위 안에 있으면서 그 자리가 빈자리인지를 확인하는 함수
+    static bool Chk(int x, int y){
+        return ((x>=0 && y>=0) && (x<n && y<n) && chess[x,y] == 0);
+    }
 
-    public static bool KnightTour(int x, int y, int count){
-        int max = chess.GetLength(0);
-        //count 번호가 n*n개의 체스칸의 마지막 칸에 도달하면 종료
-        if(count == max*max){
-            chess[x,y] = count;
-            return true;
-            }
-        
-        //바른스도르프 규칙을 이용하여 list를 만든다.
-        //c#에는 우선순위 큐가 없으므로 list를 sort함수로 정렬해준다.
-        if(!IsFinished[x,y]){
-            for(int i = 0; i < dx.Length; i++){
-                int nx = x + dx[i];
-                int ny = y + dy[i];
-                int val = 0;
-                if(Chk(nx, ny)){
-                    for(int j = 0; j < dx.Length; j++){
-                        int tx = nx + dx[i];
-                        int ty = ny + dy[i];
-                        if(Chk(tx, ty)){
-                            val++;
-                        }
-                    }
-
-                    list[x,y].Add((nx, ny, val));
-                }
-            }
-            list[x,y].Sort((x3, y3) => { if(x3.Item3 > y3.Item3) return 1; 
-                                       else if(x3.Item3 < y3.Item3) return -1;
-                                       return 0; });
-            IsFinished[x,y] = true;
-        }
-        foreach(var u in list[x,y]){
-            int nx = u.Item1;
-            int ny = u.Item2;
+    //갈수 있는 자리의 갯수를 반환하는 함수
+    static int GetDegree(int x, int y){
+        int count = 0;
+        for(int i = 0; i < dx.Length; i++){
+            int nx = x + dx[i];
+            int ny = y + dy[i];
             if(Chk(nx, ny)){
-                chess[x,y] = count;
-                if(KnightTour(nx,ny,count+1)) return true;
-            	else{
-            		chess[x,y] = 0;
-            	}
+                count++;
             }
         }
-        //새로 간 지점이 실패하면 돌아와서 다시 빈 공간을 체크해야 하므로 clear해준다.
-        list[x,y].Clear();
-        IsFinished[x,y] = false;
-        return false;
+        return count;
     }
 
-    static bool Chk(int x, int y)
-    {
-        if ((0 <= x && x < chess.GetLength(0)) && (0 <= y && y < chess.GetLength(0)) && (chess[x,y] == 0)){
-            return true;
+    static bool KnightTour(ref int x, ref int y){
+        int minIdx = -1;
+        int minVal = dx.Length+1;
+        int nx, ny;
+        int val;
+
+        for(int i = 0; i < dx.Length; i++){
+            nx = x + dx[i];
+            ny = y + dy[i];
+            if((Chk(nx, ny)) && ((val = GetDegree(nx, ny)) < minVal)){
+                minIdx = i;
+                minVal = val;
+            }
+        }
+        
+        //minIdx가 -1 그대로이면 갈수있는 위치가 없는 것이므로 false를 반환
+        if(minIdx == -1) return false;
+
+        nx = x + dx[minIdx];
+        ny = y + dy[minIdx];
+
+        chess[nx,ny] = chess[x,y] + 1;
+        
+        //성공했으므로 x,y에 새 위치를 대입해주고 true를 반환한다.
+        x = nx;
+        y = ny;
+
+        return true;
+    }
+
+    //닫힌 나이트 투어인지 확인하는 함수
+    //닫힌 나이트 투어는 끝점에서 시작점으로 돌아갈 수 있다.
+    //완성된 나이트 투어 배열로 검사해야한다.
+    static bool IsClosed(int x, int y, int startx, int starty){
+        for(int i = 0; i < dx.Length; i++){
+            if(((x+dx[i]) == startx) && ((y+dy[i]) == starty)){
+                return true;
+            }
         }
         return false;
-    }
-    
-    static void Init(int n){
-    	list = new List<(int,int,int)>[n+1,n+1];
-        IsFinished = new bool[n+1,n+1];
-    	for(int i = 0; i <= n; i++){
-    		for(int j = 0; j <= n; j++){
-    			list[i,j] = new List<(int,int,int)>();
-    		}
-    	}
     }
 }
