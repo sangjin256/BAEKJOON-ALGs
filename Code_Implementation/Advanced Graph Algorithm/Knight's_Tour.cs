@@ -31,8 +31,8 @@ public class Lecture
         
         Init(5);
   
-        chess[1,1] = 1;
-        KnightTour(1,1,1);
+        chess[0,0] = 1;
+        KnightTour(0,0,1);
 
         for(int i = 0; i < chess.GetLength(0); i++){
             for(int j = 0; j < chess.GetLength(0); j++){
