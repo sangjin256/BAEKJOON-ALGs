@@ -20,7 +20,13 @@ using System.Collections;
 public class Lecture 
 {
     static List<(int,int)>[] adj;
+    //가중치를 넣을 배열. 리스트로는 가중치만 따로 빼기가 힘들고 배열만 쓰면 Dfs가 애로하므로 배열과 리스트를 따로 만들었다.
     static int[,] adjWeight;
+    
+    //x부터 y까지 가는 간선의 최대 용량을 넣을 배열
+    static int[,] adjFull;
+    
+    static bool[] visited;
     public static void Main(string[] args) {
     	AdjInit(6);
         Add(1,2,5);
@@ -31,78 +37,95 @@ public class Lecture
         Add(3,5,8);
         Add(3,6,5);
         Add(5,6,2);
+
         FordFulkerson();
         
+        for(int i = 0; i < adjWeight.GetLength(0); i++){
+            for(int j = 0; j < adjWeight.GetLength(0); j++){
+                Console.WriteLine(i + " " + j + " : " + adjWeight[i,j]);
+            }
+        }
     }
-
+    //기준값. 처음에는 적당히 큰 값
+    static int value = 20;  
+    
     //용량 조절 알고리즘을 이용한 경로 찾기
     //경로 찾기 결과가 false가 되면 더 이상 만들 수 있는 경로가 없는 것이므로
     //알고리즘을 종료한다.
-    static List<(int,int)> temp = new List<(int,int)>();
+    static List<(int,int,int)> temp = new List<(int,int,int)>();
     static void FordFulkerson(){
         while(value > 0){
-            //항상 소스 노드에서 시작해서 싱크 노드에서 끝나야함
-            Dfs(1, 0, 6);
-            if(possible == false) value = value / 2;
-            int min = 1000;
-            foreach(var c in temp){
-                if(c.Item2 < min){
-                    min = c.Item2;
-                }
+            Console.WriteLine("  " + value);
+            
+            if(!Dfs(1,6)){
+                value = value / 2;
+                continue;
             }
             
-          
+            //선택한 경로에 포함된 간선의 가중치 중 가장 작은 가중치를 선택하고
+            //경로의 모든 간선에 이 값을 빼고, 반대간선에 이 값을 더함 
             if(temp.Count != 0){
-            	int Forref = 1;
-            	foreach(var u in temp){
-                	SubWeight(ref Forref, u.Item1, min);
-            	}
+                int min = 1000;
+                foreach(var u in temp){
+                    min = Math.Min(min, u.Item3);
+                }
+                if(min != 1000) SubWeight(min);
                 temp.Clear();
-                possible = false;
             }
-            
+            Array.Clear(visited, 0, visited.Length);
         }
     }
 
-    //기준값. 처음에는 적당히 큰 값
-    static int value = 10;
-    
-    static bool possible = false;
-    
-    static void Dfs(int s, int prev, int e){
+
+    static bool Dfs(int s, int e){
         if(s == e){
-            possible = true;
-            return;
+            return true;
         }
+        
         foreach(var u in adj[s]){
-            if(u.Item2 > value && prev != u.Item1){
-                temp.Add((u.Item1, u.Item2));
-                //Console.WriteLine(u.Item1 + " " +  u.Item2);
-                Dfs(u.Item1, s, e);
-                if(possible == true) return; 
-                temp.Remove((u.Item1, u.Item2));
+            Console.WriteLine(s + " " + u.Item1);             
+            if(visited[u.Item1]) continue;
+            if(u.Item2 >= value){
+               visited[s] = true;
+                if(Dfs(u.Item1, e)){
+                    temp.Add((s, u.Item1, u.Item2));
+                    return true;
+                }
             }
+            visited[s] = false;
         }
-        return;
+
+        return false;
     }
 
     static void AdjInit(int n){
         adj = new List<(int,int)>[n+1];
+        adjFull = new int[n+1,n+1];
+        visited = new bool[n+1];
         adjWeight = new int[n+1,n+1];
         for(int i = 1; i < n+1; i++){
             adj[i] = new List<(int,int)>();
         }
     }
-
+    
     //가중치를 최소값만큼 빼고 반대편 가중치를 올리는 함수
-    static void SubWeight(ref int x, int y, int min){
-        int newXYWeight = adjWeight[x,y] - min;
-        int newYXWeight = adjWeight[y,x] + min;
-        adj[x][adj[x].IndexOf((y,adjWeight[x,y]))] = (y,newXYWeight);
-        adj[y][adj[y].IndexOf((x,adjWeight[y,x]))] = (x,newYXWeight);
-        adjWeight[x,y] = newXYWeight;
-        adjWeight[y,x] = newYXWeight;
-        x = y;
+    static void SubWeight(int min){
+        int newXYWeight;
+        int newYXWeight;
+        int x, y, w;
+        if(temp.Count != 0){
+            for(int i = temp.Count - 1; i >= 0; i--){
+                x = temp[i].Item1; y = temp[i].Item2; w = temp[i].Item3;
+                int XIndex = adj[x].IndexOf((y,w));
+                int YIndex = adj[y].IndexOf((x,adjWeight[y,x]));
+                newXYWeight = adjWeight[x,y] - min;
+                newYXWeight = adjWeight[y,x] + min;
+                adj[x][XIndex] = (y,newXYWeight);
+                adj[y][YIndex] = (x,newYXWeight);
+                adjWeight[x,y] = newXYWeight;
+                adjWeight[y,x] = newYXWeight;
+            }
+        }
     }
     
     //a에서 b로 가는 가중치 w인 간선을 추가하는 함수
@@ -110,6 +133,8 @@ public class Lecture
     static void Add(int a, int b, int w){
         adj[a].Add((b,w));
         adj[b].Add((a,0));
+        adjFull[a,b] = w;
+        adjFull[b,a] = w;
         adjWeight[a,b] = w;
         adjWeight[b,a] = 0;
     }
