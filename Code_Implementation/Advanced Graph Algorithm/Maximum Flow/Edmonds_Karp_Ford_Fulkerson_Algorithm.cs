@@ -27,6 +27,8 @@ public class Lecture
     static int[,] adjFull;
     
     static bool[] visited;
+
+    static int source, sink;
     public static void Main(string[] args) {
     	AdjInit(6);
         Add(1,2,5);
@@ -38,7 +40,14 @@ public class Lecture
         Add(3,6,5);
         Add(5,6,2);
 
+        source = 1; sink = 6;
         Console.WriteLine(MaximumFlow());
+        
+        for(int i = 1; i < 7; i++){
+            foreach(var u in adj[i]){
+                Console.WriteLine(i + " " + u.Item1 + " " + u.Item2);
+            }
+        }
     }
     //기준값. 처음에는 적당히 큰 값
     static int value = 20;  
@@ -50,17 +59,18 @@ public class Lecture
     static int MaximumFlow(){
         while(value > 0){
             Array.Clear(visited, 0, visited.Length);
-            if(!Dfs(1,6)){
+
+            if(!Bfs()){
                 value = value / 2;
                 continue;
             }
-            
-            
+
             //선택한 경로에 포함된 간선의 가중치 중 가장 작은 가중치를 선택하고
             //경로의 모든 간선에 이 값을 빼고, 반대간선에 이 값을 더함 
             if(temp.Count != 0){
                 int min = 1000;
                 foreach(var u in temp){
+                    //Console.WriteLine(u.Item1 + " " + u.Item2 + " " + u.Item3);
                     min = Math.Min(min, u.Item3);
                 }
                 if(min != 1000) SubWeight(min);
@@ -76,23 +86,21 @@ public class Lecture
         return max;
     }
 
-
-    static bool Dfs(int s, int e){
-        if(s == e){
-            return true;
-        }
+    //에드몬드 카프 알고리즘을 위한 BFS
+    static Queue<int> q = new Queue<int>();
+    static bool Bfs(){
+        q.Enqueue(source);
+        visited[source] = true;
         
-        visited[s] = true;
-        
-        foreach(var u in adj[s]){
-            if(visited[u.Item1]) continue;
-            if(u.Item2 >= value){
-                if(Dfs(u.Item1, e)){
+        while(q.Count != 0){
+            int s = q.Dequeue();
+            foreach(var u in adj[s]){
+                if((!visited[u.Item1]) && (adjFull[s,u.Item1] - u.Item2 >= 0)){
+                    visited[u.Item1] = true;
+                    q.Enqueue(u.Item1);
                     temp.Add((s, u.Item1, u.Item2));
-                    return true;
-                }
-                //실패하면 다시 다른곳에서 돌아올 수 있으므로 u.Item1을 false해준다.
-                visited[u.Item1] = false;
+                    if(u.Item1 == sink) return true;
+                } 
             }
         }
         return false;
