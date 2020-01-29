@@ -38,13 +38,7 @@ public class Lecture
         Add(3,6,5);
         Add(5,6,2);
 
-        FordFulkerson();
-        
-        for(int i = 0; i < adjWeight.GetLength(0); i++){
-            for(int j = 0; j < adjWeight.GetLength(0); j++){
-                Console.WriteLine(i + " " + j + " : " + adjWeight[i,j]);
-            }
-        }
+        Console.WriteLine(MaximumFlow());
     }
     //기준값. 처음에는 적당히 큰 값
     static int value = 20;  
@@ -53,14 +47,14 @@ public class Lecture
     //경로 찾기 결과가 false가 되면 더 이상 만들 수 있는 경로가 없는 것이므로
     //알고리즘을 종료한다.
     static List<(int,int,int)> temp = new List<(int,int,int)>();
-    static void FordFulkerson(){
+    static int MaximumFlow(){
         while(value > 0){
-            Console.WriteLine("  " + value);
             
             if(!Dfs(1,6)){
                 value = value / 2;
                 continue;
             }
+            
             
             //선택한 경로에 포함된 간선의 가중치 중 가장 작은 가중치를 선택하고
             //경로의 모든 간선에 이 값을 빼고, 반대간선에 이 값을 더함 
@@ -74,6 +68,13 @@ public class Lecture
             }
             Array.Clear(visited, 0, visited.Length);
         }
+        
+        int max = 0;
+        foreach(var u in adj[6]){
+            max += u.Item2;
+        }
+        
+        return max;
     }
 
 
@@ -82,19 +83,18 @@ public class Lecture
             return true;
         }
         
+        visited[s] = true;
+        
         foreach(var u in adj[s]){
-            Console.WriteLine(s + " " + u.Item1);             
             if(visited[u.Item1]) continue;
             if(u.Item2 >= value){
-               visited[s] = true;
                 if(Dfs(u.Item1, e)){
                     temp.Add((s, u.Item1, u.Item2));
                     return true;
                 }
+                visited[u.Item1] = false;
             }
-            visited[s] = false;
         }
-
         return false;
     }
 
