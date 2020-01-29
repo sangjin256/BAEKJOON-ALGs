@@ -20,10 +20,8 @@ using System.Collections;
 public class Lecture 
 {
     static List<(int,int)>[] adj;
-    //가중치를 넣을 배열. 리스트로는 가중치만 따로 빼기가 힘들고 배열만 쓰면 Dfs가 애로하므로 배열과 리스트를 따로 만들었다.
-    static int[,] adjWeight;
     
-    //x부터 y까지 가는 간선의 최대 용량을 넣을 배열
+    //최대 용량을 넣을 배열. a -> b 간선과 b -> a간선의 가중치를 더하면 adjFull[a,b]의 값이 나온다.
     static int[,] adjFull;
     
     static bool[] visited;
@@ -92,6 +90,7 @@ public class Lecture
                     temp.Add((s, u.Item1, u.Item2));
                     return true;
                 }
+                //실패하면 다시 다른곳에서 돌아올 수 있으므로 u.Item1을 false해준다.
                 visited[u.Item1] = false;
             }
         }
@@ -102,7 +101,6 @@ public class Lecture
         adj = new List<(int,int)>[n+1];
         adjFull = new int[n+1,n+1];
         visited = new bool[n+1];
-        adjWeight = new int[n+1,n+1];
         for(int i = 1; i < n+1; i++){
             adj[i] = new List<(int,int)>();
         }
@@ -110,20 +108,14 @@ public class Lecture
     
     //가중치를 최소값만큼 빼고 반대편 가중치를 올리는 함수
     static void SubWeight(int min){
-        int newXYWeight;
-        int newYXWeight;
         int x, y, w;
         if(temp.Count != 0){
             for(int i = temp.Count - 1; i >= 0; i--){
                 x = temp[i].Item1; y = temp[i].Item2; w = temp[i].Item3;
                 int XIndex = adj[x].IndexOf((y,w));
-                int YIndex = adj[y].IndexOf((x,adjWeight[y,x]));
-                newXYWeight = adjWeight[x,y] - min;
-                newYXWeight = adjWeight[y,x] + min;
-                adj[x][XIndex] = (y,newXYWeight);
-                adj[y][YIndex] = (x,newYXWeight);
-                adjWeight[x,y] = newXYWeight;
-                adjWeight[y,x] = newYXWeight;
+                int YIndex = adj[y].IndexOf((x,(adjFull[x,y] - adj[x][XIndex].Item2)));
+                adj[x][XIndex] = (y,adj[x][XIndex].Item2 - min);
+                adj[y][YIndex] = (x,adj[y][YIndex].Item2 + min);
             }
         }
     }
@@ -134,8 +126,5 @@ public class Lecture
         adj[a].Add((b,w));
         adj[b].Add((a,0));
         adjFull[a,b] = w;
-        adjFull[b,a] = w;
-        adjWeight[a,b] = w;
-        adjWeight[b,a] = 0;
     }
 }
