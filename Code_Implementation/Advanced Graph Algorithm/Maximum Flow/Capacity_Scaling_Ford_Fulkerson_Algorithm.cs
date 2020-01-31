@@ -51,8 +51,6 @@ public class Lecture
     //용량 조절 알고리즘을 이용한 경로 찾기
     //경로 찾기 결과가 false가 되면 더 이상 만들 수 있는 경로가 없는 것이므로
     //알고리즘을 종료한다.
-    static List<(int,int)> temp = new List<(int,int)>();
-
     static int maxFlow = 0;
     static int MaximumFlow(){
         while(value > 0){
@@ -71,7 +69,6 @@ public class Lecture
                 min = Math.Min(min, capacity[prev[i],i] - flow[prev[i],i]);
             }
             if(min != 1000) SubWeight(min);
-            temp.Clear();
         }
 
         return maxFlow;
