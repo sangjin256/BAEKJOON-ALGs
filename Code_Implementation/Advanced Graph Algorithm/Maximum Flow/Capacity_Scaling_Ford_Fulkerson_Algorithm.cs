@@ -21,12 +21,16 @@ using System.Collections;
 
 public class Lecture 
 {
-    static List<(int,int)>[] adj;
-    
-    //최대 용량을 넣을 배열. a -> b 간선과 b -> a간선의 가중치를 더하면 adjFull[a,b]의 값이 나온다.
-    static int[,] adjFull;
-    
-    static bool[] visited;
+    //x -> y로 가는 간선만 추가해준다.
+    static List<int>[] adj;
+    //x -> y로 가는 간선 용량
+    static int[,] capacity;
+    //x -> y로 현재 흐르고 있는 유량
+    static int[,] flow;
+    //prev[i] = j는 i의 이전 노드가 j라는 뜻이다.
+    static int[] prev;
+
+    static int source, sink;
     public static void Main(string[] args) {
     	AdjInit(6);
         Add(1,2,5);
@@ -38,6 +42,7 @@ public class Lecture
         Add(3,6,5);
         Add(5,6,2);
 
+        source = 1; sink = 6;
         Console.WriteLine(MaximumFlow());
     }
     //기준값. 처음에는 적당히 큰 값
@@ -46,86 +51,70 @@ public class Lecture
     //용량 조절 알고리즘을 이용한 경로 찾기
     //경로 찾기 결과가 false가 되면 더 이상 만들 수 있는 경로가 없는 것이므로
     //알고리즘을 종료한다.
-    static List<(int,int,int)> temp = new List<(int,int,int)>();
+    static List<(int,int)> temp = new List<(int,int)>();
+
+    static int maxFlow = 0;
     static int MaximumFlow(){
         while(value > 0){
-            Array.Clear(visited, 0, visited.Length);
-            if(!Dfs(1,6)){
-                value = value / 2;
+            Array.Clear(prev, 0, prev.Length);
+            Dfs(source);
+            
+            if(prev[sink] == 0){
+                value /= 2;
                 continue;
             }
             
-            
             //선택한 경로에 포함된 간선의 가중치 중 가장 작은 가중치를 선택하고
             //경로의 모든 간선에 이 값을 빼고, 반대간선에 이 값을 더함 
-            if(temp.Count != 0){
-                int min = 1000;
-                foreach(var u in temp){
-                    min = Math.Min(min, u.Item3);
-                }
-                if(min != 1000) SubWeight(min);
-                temp.Clear();
+            int min = 1000;
+            for(int i = sink; i != source; i = prev[i]){
+                min = Math.Min(min, capacity[prev[i],i] - flow[prev[i],i]);
             }
+            if(min != 1000) SubWeight(min);
+            temp.Clear();
         }
-        
-        int max = 0;
-        foreach(var u in adj[6]){
-            max += u.Item2;
-        }
-        
-        return max;
+
+        return maxFlow;
     }
 
 
-    static bool Dfs(int s, int e){
-        if(s == e){
-            return true;
-        }
-        
-        visited[s] = true;
-        
+    static void Dfs(int s){
         foreach(var u in adj[s]){
-            if(visited[u.Item1]) continue;
-            if(u.Item2 >= value){
-                if(Dfs(u.Item1, e)){
-                    temp.Add((s, u.Item1, u.Item2));
-                    return true;
-                }
-                //실패하면 다시 다른곳에서 돌아올 수 있으므로 u.Item1을 false해준다.
-                visited[u.Item1] = false;
+            if((prev[u] == 0) && (capacity[s,u] - flow[s,u] >= value)){
+                prev[u] = s;
+                if(u == sink) return;
+                Dfs(u);
             }
         }
-        return false;
+        return;
     }
 
     static void AdjInit(int n){
-        adj = new List<(int,int)>[n+1];
-        adjFull = new int[n+1,n+1];
-        visited = new bool[n+1];
+        adj = new List<int>[n+1];
+        capacity = new int[n+1,n+1];
+        flow = new int[n+1,n+1];
+        prev = new int[n+1];
         for(int i = 1; i < n+1; i++){
-            adj[i] = new List<(int,int)>();
+            adj[i] = new List<int>();
         }
     }
     
     //가중치를 최소값만큼 빼고 반대편 가중치를 올리는 함수
     static void SubWeight(int min){
-        int x, y, w;
-        if(temp.Count != 0){
-            for(int i = temp.Count - 1; i >= 0; i--){
-                x = temp[i].Item1; y = temp[i].Item2; w = temp[i].Item3;
-                int XIndex = adj[x].IndexOf((y,w));
-                int YIndex = adj[y].IndexOf((x,(adjFull[x,y] - adj[x][XIndex].Item2)));
-                adj[x][XIndex] = (y,adj[x][XIndex].Item2 - min);
-                adj[y][YIndex] = (x,adj[y][YIndex].Item2 + min);
-            }
+        for(int i = sink; i != source; i = prev[i]){
+            flow[i,prev[i]] -= min;
+            flow[prev[i],i] += min;
         }
+        maxFlow += min;
     }
     
     //a에서 b로 가는 가중치 w인 간선을 추가하는 함수
     //그 반대는 가중치를 0으로 해서 추가한다.
     static void Add(int a, int b, int w){
-        adj[a].Add((b,w));
-        adj[b].Add((a,0));
-        adjFull[a,b] = w;
+        adj[a].Add(b);
+        adj[b].Add(a);
+        capacity[a,b] = w;
+        capacity[b,a] = w;
+
     }
 }
