@@ -47,8 +47,6 @@ public class Lecture
     }
 
     //에드몬드 카프 알고리즘 사용
-    static List<(int,int)> temp = new List<(int,int)>();
-    
     //maxFlow는 최대 유량을 뜻함
     static int maxFlow = 0;
     static int MaximumFlow(){
@@ -65,7 +63,6 @@ public class Lecture
                 min = Math.Min(min, capacity[prev[i],i] - flow[prev[i],i]);
             }
             if(min != 1000) SubWeight(min);
-            temp.Clear();
         }
         
         return maxFlow;
