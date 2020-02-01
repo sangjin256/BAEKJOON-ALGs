@@ -92,6 +92,12 @@ public class Lecture
             capacity[a*(sink+1),b] = 1;
             capacity[b,a*(sink+1)] = 1;
         }
+        else if(b == sink){
+            adj[a*(sink+1)].Add(b);
+            adj[b].Add(a*(sink+1));
+            capacity[a*(sink+1),b] = 1;
+            capacity[b,a*(sink+1)] = 1;
+        }
         else{
             adj[a].Add(b);
             adj[b].Add(a);
