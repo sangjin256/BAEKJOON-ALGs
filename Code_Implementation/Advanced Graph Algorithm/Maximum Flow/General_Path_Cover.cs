@@ -1,11 +1,9 @@
-//노드 서로소 경로 커버 : 모든 노드가 정확히 하나의 경로에만 속하는 경우.
-//최소 노드 서로소 경로 커버를 구하기 위해 매칭 그래프를 만든다.
-//원래 그래프의 각 노드에 대응되는 노드드를 두 개 추가하는데, 각각은 왼쪽 노드와
-//오른쪽 노드가 됨. 원래 그래프의 각 간선에 대해 왼쪽 노드에서 오른쪽 노드로 가는 간선도
-//추가함. 그리고 소스와 싱크를 추가해서 왼쪽을 소스와, 싱크를 오른쪽과 연결한다.
-//매칭 그래프의 최대 매칭에 대응되는 간선은 원래 그래프의 최소 노드 서로소 경로 커비를
-//구성하는 간선이 된다. 즉, 최소 노드 서로소 경로 커버의 크기는 n-c가 되며, n은 원래 그래프의
-//노드 개수, c는 최대 매칭의 크기이다.
+//일반 경로 커버 : 노드가 하나 이상의 경로에 속할 수 있는 경로 커버
+//최소 일반 경로 커버는 최소 노드 서로소 경로 커버보다 작을 수 있는데, 한 노드가
+//여러 경로에 사용될 수 있기 때문이다.
+//최소 일반 경로 커버는 원래 그래프에 노드 a에서 노드 b로 가는 경로(여러 노드를 거치는 경로도 무방)가
+//있는 경우 그래프에 a->b간선을 추가하고 최대 매칭 구하면 됨
+//n(원래 그래프의 노드 개수) - c(최대 매칭의 크기) 가 최소 일반 경로 커버의 크기가 됨
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -27,18 +25,29 @@ public class Lecture
         source = 0; sink = 8;
         AdjInit(sink);
         Add(1,5);
+        Add(1,6);
+        Add(1,7);
+        Add(1,3);
+        Add(1,4);
         Add(2,6);
+        Add(2,3);
+        Add(2,4);
+        Add(2,7);
         Add(3,4);
         Add(5,6);
+        Add(5,3);
+        Add(5,4);
+        Add(5,7);
         Add(6,3);
+        Add(6,4);
         Add(6,7);
         //소스와 왼쪽, 오른쪽과 싱크 연결
         for(int i = source+1; i <= sink-1; i++){
             Add(source, i);
             Add(i,sink);
         }
-        Console.WriteLine(MaximumMatching());
-        //최소 노드 서로소 경로 커버를 구성하는 간선
+        Console.WriteLine(GeneralPathCover());
+        //최소 일반 경로 커버를 구성하는 간선
         for(int i = source+1; i <= sink-1; i++){
             foreach(var u in adj[i]){
                 if(capacity[i,u] - flow[i,u] == 0){
@@ -52,7 +61,7 @@ public class Lecture
     }
 
     static int maxPath = 0;
-    public static int MaximumMatching(){
+    public static int GeneralPathCover(){
         while(true){
             Array.Fill(prev, -1);
 
@@ -67,7 +76,7 @@ public class Lecture
 
             SubWeight(min);
         }
-        return maxPath;
+        return (sink - 1) - maxPath;
     }
 
     static Queue<int> q = new Queue<int>();
