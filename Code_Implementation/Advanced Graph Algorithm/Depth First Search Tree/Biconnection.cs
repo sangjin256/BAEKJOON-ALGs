@@ -21,6 +21,13 @@ public class Lecture
     static List<int>[] tree;
     //역방향 그래프는 bool 배열로 확인하자(탐색할때마다 체크해야됨)
     static bool[,] back;
+
+    //루트 노드를 넣을 변수 생성
+    //책과 동일하게 시험하기 위해 root는 5로 두었다.
+    static int root = 5;
+
+    //조상을 넣어줄 배열
+    static int[] parent;
     public static void Main(string[] args) {
         AdjInit(8);
         Add(1,2);
@@ -33,9 +40,73 @@ public class Lecture
         Add(5,7);
         Add(6,7);
         Add(7,8);
+
+        DFSTree(root,0);
+        for(int i = 1; i <= 7; i++){
+            foreach(var u in tree[i]){
+                Console.WriteLine($"{i} -> {u} : {back[i,u]}");
+            }
+        }
+
+        for(int i = 1; i < 9; i++){
+            Console.WriteLine(i + " : " + IsArticulationPoint(i));
+        }
     }
 
-    public static void DFSTree(int s, int e){}
+    //단절점 찾는 함수
+    //a가 단절점이면 true 아니면 false를 반환
+    static bool IsArticulationPoint(int a){
+        Array.Clear(visited, 0, visited.Length);
+        isPoint = true;
+        if((a == root) && (tree[a].Count >= 2)){
+            return true;
+        }
+        
+        //리프 노드라 자식노드가 없으면 false를 반환
+        if(tree[a].Count == 0) return false;
+        
+        //isPoint는 단절점이 없으면 false를 반환
+        //a의 간선이 a의 조상으로 가지 못하도록 미리 visited체크를 한다,
+        visited[parent[a]] = true;
+        Dfs(a,parent[a], a);
+        if(isPoint) return true;
+
+        return false;
+    }
+    //단절점 찾기 위한 Dfs. a의 자식 노드 중 그 노드의 서브트리에서 a의 조상으로 가는 역방향 간선이
+    //없는 노드가 있는 경우 단절점이다. 없으면 isPoint가 false를 반환한다.
+    static bool isPoint;
+    static void Dfs(int s, int e, int a){
+        visited[s] = true;
+        foreach(var u in tree[s]){
+            if(visited[u] || back[a,u]) continue;
+            Console.WriteLine(s + " " + u);
+            if((back[u,e] == true)){
+                isPoint = false;
+                return;
+            }
+            Dfs(u,e,a);
+        }
+    }
+
+#region SetDFSTree
+    public static void DFSTree(int s, int e){
+        visited[s] = true;
+        foreach(var u in adj[s]){
+            if(!visited[u]){
+                tree[s].Add(u);
+                parent[u] = s;
+                visited[u] = true;
+                DFSTree(u,s);
+            }
+            else if(visited[u] && (u != e)){
+                if(!tree[u].Contains(s)){
+                    tree[s].Add(u);
+                    back[s,u] = true;
+                }
+            }
+        }
+    }
 
     public static void Add(int a, int b){
         adj[a].Add(b);
@@ -46,9 +117,12 @@ public class Lecture
         tree = new List<int>[n+1];
         back = new bool[n+1,n+1];
         visited = new bool[n+1];
+        parent = new int[n+1];
         for(int i = 1; i <= n; i++){
             adj[i] = new List<int>();
             tree[i] = new List<int>();
         }
     }
+#endregion
+
 }
