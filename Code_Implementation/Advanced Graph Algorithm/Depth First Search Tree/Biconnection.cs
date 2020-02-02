@@ -42,51 +42,75 @@ public class Lecture
         Add(7,8);
 
         DFSTree(root,0);
-        for(int i = 1; i <= 7; i++){
-            foreach(var u in tree[i]){
-                Console.WriteLine($"{i} -> {u} : {back[i,u]}");
-            }
-        }
 
-        for(int i = 1; i < 9; i++){
+        for(int i = 1; i < 8; i++){
             Console.WriteLine(i + " : " + IsArticulationPoint(i));
+            foreach(var u in tree[i]){
+                Console.WriteLine($"{i} -> {u} : {IsBridge(i,u)}");
+            }
         }
     }
 
     //단절점 찾는 함수
     //a가 단절점이면 true 아니면 false를 반환
     static bool IsArticulationPoint(int a){
-        Array.Clear(visited, 0, visited.Length);
-        isPoint = true;
+        
+        //a가 루트노드일 때, 자식이 2개 이상이면 단절점이다.
         if((a == root) && (tree[a].Count >= 2)){
             return true;
         }
         
-        //리프 노드라 자식노드가 없으면 false를 반환
-        if(tree[a].Count == 0) return false;
+        //깊이우선탐색트리에서 트리 간선으로 이루어진 자식이 없으면 단절점이 아니다.
+        int count = 0;
+        foreach(var u in tree[a]){
+            if(back[a,u] == false) continue;
+            count++;
+        }
+        if(tree[a].Count == count) return false;
         
-        //isPoint는 단절점이 없으면 false를 반환
-        //a의 간선이 a의 조상으로 가지 못하도록 미리 visited체크를 한다,
-        visited[parent[a]] = true;
-        Dfs(a,parent[a], a);
-        if(isPoint) return true;
-
+        foreach(var u in tree[a]){
+            if(Bfs(u, parent[a]) == true) return true;
+        }
         return false;
     }
-    //단절점 찾기 위한 Dfs. a의 자식 노드 중 그 노드의 서브트리에서 a의 조상으로 가는 역방향 간선이
+    //단절점 찾기 위한 Bfs. a의 자식 노드 중 그 노드의 서브트리에서 a의 조상으로 가는 역방향 간선이
     //없는 노드가 있는 경우 단절점이다. 없으면 isPoint가 false를 반환한다.
-    static bool isPoint;
-    static void Dfs(int s, int e, int a){
-        visited[s] = true;
-        foreach(var u in tree[s]){
-            if(visited[u] || back[a,u]) continue;
-            Console.WriteLine(s + " " + u);
-            if((back[u,e] == true)){
-                isPoint = false;
-                return;
+    static Queue<int> q = new Queue<int>();    
+    static bool Bfs(int n, int parent){
+        q.Enqueue(n);
+        while(q.Count != 0){
+            int s = q.Dequeue();
+            foreach(var u in tree[s]){
+                if(back[s,parent] == true){
+                    return false;
+                }
+                if(back[s,u] == true) continue;
+                q.Enqueue(u);
             }
-            Dfs(u,e,a);
         }
+        return true;
+    }
+    //단절선 찾는 함수
+    //a -> b가 단절선이면 true를 반환
+
+    static bool IsBridge(int a, int b){
+        Array.Clear(visited, 0, visited.Length);
+        //a->b간선이 역방향 간선이면 단절선이 아니다.
+        if(back[a,b] == true) return false;
+
+        q.Enqueue(b);
+        while(q.Count != 0){
+            int s = q.Dequeue();
+            foreach(var u in tree[s]){
+                if(back[s,a] == true || back[s,parent[a]] == true){
+                    return false;
+                }
+                if(back[s,u] == true) continue;
+                q.Enqueue(u);
+            }
+        }
+
+        return true;
     }
 
 #region SetDFSTree
