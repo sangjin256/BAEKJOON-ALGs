@@ -47,12 +47,10 @@ public class Lecture
                 tree[s].Add(u);
                 DFSTree(u,s);
             }            
-            else if(visited[u] && (u != e)){
+            else if((u != e) && (!back[u,s])){
                 //이미 역방향 간선이 만들어져 있으면 다시 반대방향 간선을 만들지 않는다.
-                if(!tree[u].Contains(s)){
-                    tree[s].Add(u);
-                    back[s,u] = true;
-                }
+                tree[s].Add(u);
+                back[s,u] = true;
             }
         }
     }
