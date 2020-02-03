@@ -1,14 +1,14 @@
 /*
 #1753
 
- ¹æÇâ±×·¡ÇÁ°¡ ÁÖ¾îÁö¸é ÁÖ¾îÁø ½ÃÀÛÁ¡¿¡¼­ ´Ù¸¥ ¸ðµç Á¤Á¡À¸·ÎÀÇ ÃÖ´Ü °æ·Î¸¦ ±¸ÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ½Ã¿À.
+ ï¿½ï¿½ï¿½ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï½Ã¿ï¿½.
  
- ´Ü, ¸ðµç °£¼±ÀÇ °¡ÁßÄ¡´Â 10 ÀÌÇÏÀÇ ÀÚ¿¬¼öÀÌ´Ù.
+ ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ 10 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
  */
 import java.io.*;
 import java.util.*;
-public class Main {
-	//¹éÁØ¿¡ Á¦ÃâÇÏ±â À§ÇØ ³»ºÎÅ¬·¡½º·Î ÀÛ¼º. ÀÚ¹Ù´Â ÇÑ ÆÄÀÏ¿¡ 2°³ÀÇ Å¬·¡½º°¡ µé¾î°¥ ¼ö ¾ø´Ù.
+public class Dijkstra {
+	//ï¿½ï¿½ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½. ï¿½Ú¹Ù´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ 2ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	class Pair implements Comparable<Pair> {
 		public int index;
 		public int distance;
@@ -24,13 +24,13 @@ public class Main {
 			else return 0;
 		}
 	}
-	//´ÙÀÍ½ºÆ®¶ó¿¡¼­ »ç¿ëÇÒ ¿ì¼±¼øÀ§ Å¥
+	//ï¿½ï¿½ï¿½Í½ï¿½Æ®ï¿½ó¿¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ Å¥
 	static PriorityQueue<Pair> q = new PriorityQueue<Pair>();
 	
-	//ÀÎÁ¢ ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	static ArrayList<ArrayList<Pair>> adj;
 	
-	//°Å¸® ´ã´Â ¹è¿­
+	//ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ ï¿½è¿­
 	static int[] distance;
 	
 	public static void main(String[] args) {
@@ -43,7 +43,7 @@ public class Main {
 				int[] a = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 				Add(a[0],a[1],a[2]);
 			}
-			//INF(¹«ÇÑ´ë)°¡ µû·Î ¾øÀ¸¹Ç·Î Àû´çÇÑ Å« ¼ö¸¦ ³Ö´Â´Ù.
+			//INF(ï¿½ï¿½ï¿½Ñ´ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½.
 			for(int i = 1; i <= arr[0]; i++) {
 				distance[i] = 2000000;
 			}
@@ -59,27 +59,27 @@ public class Main {
 	}
 	
 	public static void Dijkstra(int start) {
-		//½ÃÀÛ°£¼±±îÁö °¡´Â °£¼±ÀÇ ±æÀÌ°¡ 0ÀÌ¶ó´Â ÀÇ¹Ì
+		//ï¿½ï¿½ï¿½Û°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ 0ï¿½Ì¶ï¿½ï¿½ ï¿½Ç¹ï¿½
 		distance[start] = 0;
-		q.add(new Main().new Pair(start,0));
+		q.add(new Dijkstra().new Pair(start,0));
 		
 		while(!q.isEmpty()) {
 			int a = q.poll().index;
-			//µÎ Á¤Á¡ »çÀÌ¿¡ ¿©·¯°³ÀÇ °£¼±ÀÌ Á¸ÀçÇÒ ¼ö ÀÖÀ¸¹Ç·Î ¹æ¹®Ã³¸® x!!
+			//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½æ¹®Ã³ï¿½ï¿½ x!!
 			//if(processed[a]) continue;
 			//processed[a] = true;
 			for(Pair p : adj.get(a)) {
 				int b = p.index; int w = p.distance;
 				if(distance[a] + w < distance[b]) {
 					distance[b] = distance[a] + w;
-					q.offer(new Main().new Pair(b, distance[b]));
+					q.offer(new Dijkstra().new Pair(b, distance[b]));
 				}
 			}
 		}
 	}
 	
 	public static void Add(int a, int b, int w) {
-		adj.get(a).add(new Main().new Pair(b, w));
+		adj.get(a).add(new Dijkstra().new Pair(b, w));
 	}
 	
 	public static void AdjInit(int n) {
