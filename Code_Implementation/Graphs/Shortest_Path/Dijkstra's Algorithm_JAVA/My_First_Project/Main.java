@@ -1,13 +1,13 @@
 import java.io.*;
 import java.util.*;
 public class Main {
-	//´ÙÀÍ½ºÆ®¶ó¿¡¼­ »ç¿ëÇÒ ¿ì¼±¼øÀ§ Å¥
+	//ë‹¤ìµìŠ¤íŠ¸ë¼ì—ì„œ ì‚¬ìš©í•  ìš°ì„ ìˆœìœ„ í
 	static PriorityQueue<Pair> q = new PriorityQueue<Pair>();
 	
-	//ÀÎÁ¢ ¸®½ºÆ®
+	//ì¸ì ‘ ë¦¬ìŠ¤íŠ¸
 	static ArrayList<ArrayList<Pair>> adj;
 	
-	//°Å¸® ´ã´Â ¹è¿­
+	//ê±°ë¦¬ ë‹´ëŠ” ë°°ì—´
 	static int[] distance;
 	
 	static boolean[] processed;
@@ -21,7 +21,7 @@ public class Main {
 		Add(3,4,6);
 		Add(4,5,2);
 		
-		//INF(¹«ÇÑ´ë)°¡ µû·Î ¾øÀ¸¹Ç·Î Àû´çÇÑ Å« ¼ö¸¦ ³Ö´Â´Ù.
+		//INF(ë¬´í•œëŒ€)ê°€ ë”°ë¡œ ì—†ìœ¼ë¯€ë¡œ ì ë‹¹í•œ í° ìˆ˜ë¥¼ ë„£ëŠ”ë‹¤.
 		for(int i = 1; i <= n; i++) {
 			distance[i] = 20;
 		}
@@ -34,9 +34,9 @@ public class Main {
 	}
 	
 	public static void Dijkstra() {
-		//½ÃÀÛ°£¼±Àº 1·Î ¼³Á¤
+		//ì‹œì‘ê°„ì„ ì€ 1ë¡œ ì„¤ì •
 		distance[1] = 0;
-		//1±îÁö °¡´Â °£¼±ÀÇ ±æÀÌ°¡ 0ÀÌ¶ó´Â ÀÇ¹Ì
+		//1ê¹Œì§€ ê°€ëŠ” ê°„ì„ ì˜ ê¸¸ì´ê°€ 0ì´ë¼ëŠ” ì˜ë¯¸
 		q.add(new Pair(1,0));
 		
 		while(!q.isEmpty()) {
