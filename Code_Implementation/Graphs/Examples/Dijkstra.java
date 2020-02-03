@@ -48,7 +48,7 @@ public class Dijkstra {
 				distance[i] = 2000000;
 			}
 			
-			Dijkstra(start);
+			Dijkstra_(start);
 			
 			for(int i = 1; i <= arr[0]; i++) {
 				if(distance[i] == 2000000) System.out.println("INF");
@@ -58,7 +58,7 @@ public class Dijkstra {
 		} catch(Exception e) {e.printStackTrace();}
 	}
 	
-	public static void Dijkstra(int start) {
+	public static void Dijkstra_(int start) {
 		//���۰������� ���� ������ ���̰� 0�̶�� �ǹ�
 		distance[start] = 0;
 		q.add(new Dijkstra().new Pair(start,0));
