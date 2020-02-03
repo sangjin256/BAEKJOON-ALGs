@@ -1,14 +1,14 @@
 /*
 #1753
 
- ����׷����� �־����� �־��� ���������� �ٸ� ��� ���������� �ִ� ��θ� ���ϴ� ���α׷��� �ۼ��Ͻÿ�.
+ 방향그래프가 주어지면 주어진 시작점에서 다른 모든 정점으로의 최단 경로를 구하는 프로그램을 작성하시오.
  
- ��, ��� ������ ����ġ�� 10 ������ �ڿ����̴�.
+ 단, 모든 간선의 가중치는 10 이하의 자연수이다.
  */
 import java.io.*;
 import java.util.*;
 public class Dijkstra {
-	//���ؿ� �����ϱ� ���� ����Ŭ������ �ۼ�. �ڹٴ� �� ���Ͽ� 2���� Ŭ������ �� �� ����.
+	//백준에 제출하기 위해 내부클래스로 작성. 자바는 한 파일에 2개의 클래스가 들어갈 수 없다.
 	class Pair implements Comparable<Pair> {
 		public int index;
 		public int distance;
@@ -24,13 +24,13 @@ public class Dijkstra {
 			else return 0;
 		}
 	}
-	//���ͽ�Ʈ�󿡼� ����� �켱���� ť
+	//다익스트라에서 사용할 우선순위 큐
 	static PriorityQueue<Pair> q = new PriorityQueue<Pair>();
 	
-	//���� ����Ʈ
+	//인접 리스트
 	static ArrayList<ArrayList<Pair>> adj;
 	
-	//�Ÿ� ��� �迭
+	//거리 담는 배열
 	static int[] distance;
 	
 	public static void main(String[] args) {
@@ -43,7 +43,7 @@ public class Dijkstra {
 				int[] a = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 				Add(a[0],a[1],a[2]);
 			}
-			//INF(���Ѵ�)�� ���� �����Ƿ� ������ ū ���� �ִ´�.
+			//INF(무한대)가 따로 없으므로 적당한 큰 수를 넣는다.
 			for(int i = 1; i <= arr[0]; i++) {
 				distance[i] = 2000000;
 			}
@@ -59,13 +59,13 @@ public class Dijkstra {
 	}
 	
 	public static void Dijkstra_(int start) {
-		//���۰������� ���� ������ ���̰� 0�̶�� �ǹ�
+		//시작간선까지 가는 간선의 길이가 0이라는 의미
 		distance[start] = 0;
 		q.add(new Dijkstra().new Pair(start,0));
 		
 		while(!q.isEmpty()) {
 			int a = q.poll().index;
-			//�� ���� ���̿� �������� ������ ������ �� �����Ƿ� �湮ó�� x!!
+			//두 정점 사이에 여러개의 간선이 존재할 수 있으므로 방문처리 x!!
 			//if(processed[a]) continue;
 			//processed[a] = true;
 			for(Pair p : adj.get(a)) {
