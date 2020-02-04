@@ -6,6 +6,7 @@
 //매칭 그래프의 최대 매칭에 대응되는 간선은 원래 그래프의 최소 노드 서로소 경로 커비를
 //구성하는 간선이 된다. 즉, 최소 노드 서로소 경로 커버의 크기는 n-c가 되며, n은 원래 그래프의
 //노드 개수, c는 최대 매칭의 크기이다.
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ public class Lecture
             Add(source, i);
             Add(i,sink);
         }
-        Console.WriteLine(MaximumMatching());
+        Console.WriteLine(NodeDisjointPathCover());
         //최소 노드 서로소 경로 커버를 구성하는 간선
         for(int i = source+1; i <= sink-1; i++){
             foreach(var u in adj[i]){
@@ -52,7 +53,7 @@ public class Lecture
     }
 
     static int maxPath = 0;
-    public static int MaximumMatching(){
+    public static int NodeDisjointPathCover(){
         while(true){
             Array.Fill(prev, -1);
 
@@ -67,7 +68,8 @@ public class Lecture
 
             SubWeight(min);
         }
-        return maxPath;
+        //n - c
+        return (sink - 1) - maxPath;
     }
 
     static Queue<int> q = new Queue<int>();
