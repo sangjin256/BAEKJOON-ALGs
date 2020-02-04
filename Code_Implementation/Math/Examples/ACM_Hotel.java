@@ -12,16 +12,24 @@ public class ACM_Hotel{
                 int floor = arr[2];
                 int num = 1;
                 
-                while(floor - arr[0] >= 0){
-                    floor = floor - arr[0];
-                    num++;
+                if(floor%arr[0] == 0){
+                    sb.append(arr[0]);
+                    num = floor/arr[0];
+                    if(num < 10){
+                        sb.append("0" + num);
+                    }
+                    else sb.append(num);                    
                 }
-                sb.append(floor);
-                //이 10보다 작으면 앞에 0을 붙여준다.
-                if(num < 10){
-                    sb.append("0" + num);
+                else{
+                    floor = floor % arr[0];
+                    sb.append(floor);
+                    num += arr[2]/arr[0];
+                    //이 10보다 작으면 앞에 0을 붙여준다.
+                    if(num < 10){
+                        sb.append("0" + num);
+                    }
+                    else sb.append(num);
                 }
-                else sb.append(num);
                 
                 System.out.println(sb);
                 
