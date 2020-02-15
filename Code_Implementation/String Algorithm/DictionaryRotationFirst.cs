@@ -33,7 +33,7 @@ class Lecture{
                 else b = mid - 1;
             }
             //그 다음자리 문자의 알파벳 순서도 앞의 문자열이 먼저이면 continue한다.
-            if(twiceStr[left + a - i] < twiceStr[a]) continue;
+            if(twiceStr[left - i + a] < twiceStr[a]) continue;
             else{
                 left = i;
             }
