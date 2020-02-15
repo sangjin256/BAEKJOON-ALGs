@@ -13,11 +13,11 @@ class TrieNode{
         return children;
     }
 
-    Boolean isEndOfWord(){
+    public bool IsEndOfWord(){
         return endOfWord;
     }
 
-    void SetEndOfWord(bool endOfWrod){
+    public void SetEndOfWord(bool endOfWord){
         this.endOfWord = endOfWord;
     }
 }
@@ -25,31 +25,84 @@ class TrieNode{
 class Trie{
     private TrieNode root;
 
-    Trie(){
+    public Trie(){
         root = new TrieNode();
     }
 
     public void Insert(string word){
         TrieNode current = root;
+        
         for(int i = 0; i < word.Length; i++){
-            if(!current.GetChildren().TryGetValue(word[i], out current)){
-                current = new TrieNode();
-                current.GetChildren().Add(word[i], current);
+            TrieNode node = null;
+            if(current.GetChildren().TryGetValue(word[i], out node)){
+                current = node;
+            }
+            else{
+                node = new TrieNode();
+                current.GetChildren().Add(word[i], node);
+                current = node;
             }
         }
-
         current.SetEndOfWord(true);
     } 
 
     public bool Delete(string word){
-
+        return Delete(root, word, 0);
     }
 
     public bool ContainsNode(string word){
+        TrieNode current = root;
+        for(int i = 0; i < word.Length; i++){
+            char ch = word[i];
+            TrieNode node = null;
+            if(!current.GetChildren().TryGetValue(ch, out node)){
+                return false;
+            }
+            else current = node;
+        }
+        return current.IsEndOfWord();
+    }
 
+    public bool IsEmpty(){
+        return root == null;
     }
 
     private bool Delete(TrieNode current, string word, int index){
+        if(index == word.Length){
+            if(!current.IsEndOfWord()){
+                return false;
+            }
 
+            current.SetEndOfWord(false);
+            return current.GetChildren().Count == 0;
+        }
+
+        char ch = word[index];
+        TrieNode node = null;
+        if(!current.GetChildren().TryGetValue(ch, out node)){
+            return false;
+        }
+
+        bool shouldDeleteCurrentNode = Delete(node, word, index+1) && !node.IsEndOfWord();
+
+        if(shouldDeleteCurrentNode){
+            current.GetChildren().Remove(ch);
+            return current.GetChildren().Count == 0;
+        }
+
+        return false;
+    }
+}
+
+class Lecture{
+    public static void Main(string[] args){
+        Trie trie = new Trie();
+        trie.Insert("CANAL");
+        trie.Insert("CANDY");
+        trie.Insert("THE");
+        trie.Insert("THERE");
+        Console.WriteLine(trie.ContainsNode("CANAL"));
+        Console.WriteLine(trie.Delete("CANAL"));
+        Console.WriteLine(trie.ContainsNode("CANAL"));
     }
 }
