@@ -39,11 +39,12 @@ class Lecture{
 
             else if(y >= k && k + z[k-x] > y){
                 z[k] = y - k + 1;
+                if(y == str.Length-1) continue;
                 while(str[(y-k+1) + count] == str[(y+1) + count]){
                     count++;
-                    if((y+1) + count >= str.Length) break;
+                    if(y+1+count >= str.Length) break;
                 }
-                z[k] = z[k] + count;
+                z[k] += count;
             }
         }
     }
