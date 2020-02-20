@@ -29,32 +29,28 @@ class Node{
     }
 }
 
-class Lecture{
-    public static void Main(string[] args){
-        Node treap = null;
-        Merge(ref treap, treap, new Node(1));
-        Merge(ref treap, treap, new Node(2));
-        Merge(ref treap, treap, new Node(3));
-        Merge(ref treap, treap, new Node(4));
-        Node left = null, right = null;
-        Split(treap, ref left, ref right, 2);
-        Merge(ref treap, right, left);
+class Treap{
+    public Node root;
+
+    public Treap(){
+        root = null;
     }
 
-    public static int Size(Node treap){
+    public int Size(Node treap){
         if(treap == null) return 0;
         return treap.size;
     }
-    public static void Split(Node treap, ref Node left, ref Node right, int k){
+
+    public void Split(Node treap, ref Node left, ref Node right, int k){
         if(treap == null){
             left = right = null;
         }
-        else {
+        else{
             if(Size(treap.left) < k){
-                Split(treap.right, ref treap.right, ref right, k - Size(treap.left) - 1);
+                Split(treap.right, ref treap.right, ref right, k-Size(treap.left)-1);
                 left = treap;
             }
-            else {
+            else{
                 Split(treap.left, ref left, ref treap.left, k);
                 right = treap;
             }
@@ -62,7 +58,7 @@ class Lecture{
         }
     }
 
-    public static void Merge(ref Node treap, Node left, Node right){
+    public void Merge(ref Node treap, Node left, Node right){
         if(left == null) treap = right;
         else if(right == null) treap = left;
         else{
@@ -76,5 +72,26 @@ class Lecture{
             }
             treap.size = Size(treap.left) + Size(treap.right) + 1;
         }
+    }
+
+    public void Read(Node treap){
+        if(treap.left != null) Read(treap.left);
+        Console.WriteLine(treap.value);
+        if(treap.right != null) Read(treap.right);
+    }
+}
+
+class Lecture{
+    public static void Main(string[] args){
+        Treap treap = new Treap();
+        treap.Merge(ref treap.root, treap.root, new Node(1));
+        treap.Merge(ref treap.root, treap.root, new Node(2));
+        treap.Merge(ref treap.root, treap.root, new Node(3));
+        treap.Merge(ref treap.root, treap.root, new Node(4));
+        Treap left = new Treap();
+        Treap right = new Treap();
+        treap.Split(treap.root, ref left.root, ref right.root, 2);
+        treap.Merge(ref treap.root, right.root, left.root);
+        treap.Read(treap.root);
     }
 }
