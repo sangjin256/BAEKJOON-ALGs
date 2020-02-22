@@ -1,4 +1,3 @@
-import java.util.*;
 import java.io.*;
 class SortNum2{
     public static void main(String[] args){
