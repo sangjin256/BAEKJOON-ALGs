@@ -24,5 +24,6 @@ class Fourth_Point{
                 break;
             }
         }
+        sc.close();
     }
 }

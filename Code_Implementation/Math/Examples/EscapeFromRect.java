@@ -14,5 +14,6 @@ class EscapeFromRect{
         int h = sc.nextInt();
         
         System.out.println(Math.min(Math.min(w-x, x), Math.min(h-y,y)));
+        sc.close();
     }
 }
