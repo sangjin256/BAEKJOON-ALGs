@@ -72,7 +72,7 @@ class Time_Machine{
     
     public static boolean BellmanFord(int s, int n){
         for(int i = 1; i <= n; i++){
-            distance[i] = 10001;
+            distance[i] = 6000*10000+1;
         }
         Dfs(1);
         distance[s] = 0;
