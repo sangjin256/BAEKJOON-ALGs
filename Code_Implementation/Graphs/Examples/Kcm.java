@@ -15,36 +15,77 @@ class Third implements Comparable<Third>{
 
 class Kcm{
     static ArrayList<ArrayList<Third>> adj;
+    static ArrayList<PriorityQueue<Third>> point;
+    static ArrayList<ArrayList<Third>> reverse;
+    static int[] maxMoney;
     static int[] distance;
-    static int[] money;
+    static boolean[] processed;
     public static void Initialize(int n){
+        processed = new boolean[n+1];
         adj = new ArrayList<ArrayList<Third>>();
+        point = new ArrayList<PriorityQueue<Third>>();
+        reverse = new ArrayList<ArrayList<Third>>();
         distance = new int[n+1];
-        money = new int[n+1];
+        maxMoney = new int[n+1];
         for(int i = 0; i <= n; i++){
             adj.add(new ArrayList<Third>());
+            point.add(new PriorityQueue<Third>());
+            reverse.add(new ArrayList<Third>());
         }
     }
 
-    public static void Dijkstra(int s, int n, int maxM){
-        boolean[] processed = new boolean[n+1];
-        PriorityQueue<Third> q = new PriorityQueue<>();
+    public static void Add(int a, int b, int m, int w){
+        adj.get(a).add(new Third(b,w,m));
+        reverse.get(b).add(new Third(a,w,m));
+    }
+
+    public static void LimitCal(){
+        for(int i = 1; i <adj.size(); i++){
+            for(Third t : adj.get(i)){
+                if(maxMoney[i] + t.m <= maxMoney[t.b]){
+                    point.get(i).add(t);
+                }
+            }
+        }
+    }
+
+    public static void SetMaxMoney(int maxM){
+        boolean[] visited = new boolean[reverse.size()];
+        maxMoney[reverse.size()-1] = maxM;
+        SMM(reverse.size()-1,visited);
+    }
+
+    public static void SMM(int a, boolean[] visited){
+        if(visited[a]) return;
+        visited[a] = true;
+        for(Third t : reverse.get(a)){
+            maxMoney[t.b] = Math.max(maxMoney[t.b], maxMoney[a] - t.m);
+            SMM(t.b,visited);
+        }
+    }
+
+    public static void Dfs(int a){
+        if(processed[a]) return;
+        processed[a] = true;
+        for(Third t : point.get(a)){
+            Dfs(t.b);
+        }
+    }
+
+    public static void Dijkstra(int s, int n){
         for(int i = 1; i <= n; i++){
-            distance[i] = 10000*1000+1;
+            distance[i] = 10000*1000+3;
         }
         distance[s] = 0;
+        PriorityQueue<Third> q = new PriorityQueue<>();
         q.add(new Third(s,0,0));
         while(!q.isEmpty()){
             int a = q.poll().b;
-            if(processed[a]) continue;
-            processed[a] = true;
-            for(Third t : adj.get(a)){
-                if(distance[a]+t.w < distance[t.b]){
-                    if(money[a]+t.m < maxM){
-                        distance[t.b] = distance[a]+t.w;
-                        money[t.b] = money[a]+t.m;
-                        q.add(new Third(t.b, distance[t.b], money[t.b]));
-                    }
+            for(Third t : point.get(a)){
+                if(maxMoney[t.b] >= t.m + maxMoney[a]){
+                    distance[t.b] = distance[a]+t.w;
+                    if(t.b == n) break;
+                    q.add(new Third(t.b, t.m + maxMoney[a], distance[t.b]));
                 }
             }
         }
@@ -57,11 +98,26 @@ class Kcm{
             int n = sc.nextInt(), m = sc.nextInt(), k = sc.nextInt();
             Initialize(n);
             for(int i = 0; i < k; i++){
-                adj.get(sc.nextInt()).add(new Third(sc.nextInt(), sc.nextInt(), sc.nextInt()));
+                Add(sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt());
             }
-            Dijkstra(1, n, m);
-            if(distance[n] == 10000*1000+1) System.out.println("Poor KCM");
-            else System.out.println(distance[n]);
+            SetMaxMoney(m);
+            LimitCal();
+            Dfs(1);
+            if(processed[n] == false){
+                System.out.println("Poor KCM");
+                return;
+            }
+            Dijkstra(1, n);
+            // for(int i : maxMoney){
+            //     System.out.println(i);
+            // }
+            // System.out.println();
+            // for(int i = 1; i <= n; i++){
+            //     for(Third t : point.get(i)){
+            //         System.out.println(i + " : " + t.b + " " + t.m + " " + t.w);
+            //     }
+            // }
+            System.out.println(distance[n]);
         }
         sc.close();
     }
