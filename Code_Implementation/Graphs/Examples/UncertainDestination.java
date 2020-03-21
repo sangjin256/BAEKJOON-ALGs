@@ -29,6 +29,7 @@ class Pair implements Comparable<Pair>{
 }
 public class UncertainDestination{
     static ArrayList<ArrayList<Pair>> adj;
+    static final int INF = 1000*50000+2;
     public static void Initialize(int n){
         adj = new ArrayList<ArrayList<Pair>>();
         for(int i = 0; i <= n; i++){
@@ -37,11 +38,11 @@ public class UncertainDestination{
     }
 
     public static void Add(int a, int b, int w, int g, int h){
-        if((a == h && b == g) || (a == g && b == h)){
+        if((a==g&&b==h) || (a==h&&b==g)){
             adj.get(a).add(new Pair(b, w*2-1));
             adj.get(b).add(new Pair(a, w*2-1));
         }
-        else{
+        else {
             adj.get(a).add(new Pair(b, w*2));
             adj.get(b).add(new Pair(a, w*2));
         }
@@ -58,11 +59,13 @@ public class UncertainDestination{
                 Add(sc.nextInt(), sc.nextInt(), sc.nextInt(),g ,h);
             }
             int[] distance = Dijkstra(s, n);
-            PriorityQueue<Integer> results = new PriorityQueue<>();
+            ArrayList<Integer> results = new ArrayList<Integer>();
             for(int i = 0; i < t; i++){
-                int d = sc.nextInt();
+                Integer d = sc.nextInt();
                 if(distance[d]%2 == 1) results.add(d);
             }
+
+            Collections.sort(results);
             for(Integer i : results){
                 System.out.print(i + " ");
             }
@@ -75,10 +78,10 @@ public class UncertainDestination{
         int[] distance = new int[n+1];
         boolean[] processed = new boolean[n+1];
         PriorityQueue<Pair> q = new PriorityQueue<>();
-        for(int i = 1; i <= n; i++){
+        for(int i = 0; i <= n; i++){
             //h<->g도로를 지나지 않으면 전부 짝수가 되어야 하므로 시작점과 연결되는 말든
             //짝수로 남게 한다.
-            distance[i] = 200000000;
+            distance[i] = INF;
         }
         distance[s] = 0;
         q.add(new Pair(s,0));
