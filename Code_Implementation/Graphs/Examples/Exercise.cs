@@ -26,14 +26,6 @@ class Exercise{
         }
     }
 
-    public static bool Dfs(int s, int e){
-        foreach(Pair p in adj[s]){
-            if(p.b == e) return true;
-            Dfs(p.b, e);
-        }
-        return false;
-    }
-
     public static int Dijkstra(int s, int n){
         int[] distance = new int[n+1];
         for(int i = 1; i <= n; i++){
