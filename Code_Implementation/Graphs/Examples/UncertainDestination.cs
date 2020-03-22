@@ -128,6 +128,7 @@ public class PriorityQueue<T>{
             if(left >= Count) break;
             int right = left+1;
             int ind = left;
+            //list[0]에 list[--Count]가 대입되었으므로 right == count이면 이미 대입한 값이다.
             if(right < Count && Comparer.Compare(list[left], list[right]) > 0) ind = right;
             if(Comparer.Compare(list[i], list[ind]) >= 0){
                 T tmp = list[i];
