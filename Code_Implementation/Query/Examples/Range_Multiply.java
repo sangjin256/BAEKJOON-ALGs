@@ -21,51 +21,37 @@ public class Range_Multiply{
         n = sc.nextInt();
         int m = sc.nextInt(), k = sc.nextInt();
         if((n&(n-1)) == 0) tree = new long[2*n];
-        else tree = new long[2*(int)Math.pow(2, (int)Math.sqrt(n)+1)];
+        else tree = new long[1<<((int)Math.ceil(Math.log10(n)/Math.log10(2))+1)];
         arrayN = n;
-        n = tree.length - arrayN;
-        for(int i = 1; i <= n; i++){
-            Change(i, sc.nextInt());
+        n = tree.length/2;
+        Arrays.fill(tree, 1);
+        for(int i = 0; i < arrayN; i++){
+            Change(i, 1, sc.nextInt(), 0, n-1);
         }
-        
-        //수의 변경이 m번 일어나고 구간곱이 k번 일어나므로 while문으로 제대로된 숫자가 들어올때만
-        //count해준다.
-        int count = 0;
-        while(count < m+k){
+
+        for(int i = 0; i < m+k; i++){
             int a = sc.nextInt(), b = sc.nextInt(), c = sc.nextInt();
             if(a == 1){
-                if(b > 0 && b <= arrayN){
-                    Change(b, c);
-                    count++;
-                } 
+                Change(b-1,1,c,0,n-1);
             }
             if(a == 2){
-                if(b > 0 && b <= arrayN && c > 0 && c <= arrayN){
-                    System.out.println(Multiply(b, c));
-                }
+                System.out.println(Multiply(b-1, c-1, 1, 0,n-1) % 1000000007);
             }
         }
         sc.close();
     }
 
-    public static void Change(int k, int x){
-        k += n-1;
-        tree[k] = x;
-        for(k/=2; k >= 1; k/=2){
-            tree[k] = tree[k*2]*tree[k*2+1] % 1000000007;
-        }
+    public static long Change(int pos, int k, int v, int x, int y){
+        if(y < pos || pos < x) return tree[k] % 1000000007;
+        if(x == y) return tree[k] = v;
+        int d = (x+y) / 2;
+        return tree[k] = ((Change(pos,k*2,v,x,d) % 1000000007) * (Change(pos,k*2+1,v,d+1,y) % 1000000007)) % 1000000007;
     }
 
-    public static int Multiply(int a, int b){
-        a += n-1;
-        b += n-1;
-        int s = 1;
-        while(a <= b){
-            if(a % 2 == 1) s*=tree[a++] % 1000000007;
-            if(b % 2 == 0) s*=tree[b--] % 1000000007;
-            a/=2; b/=2;
-        }
-
-        return s;
+    public static long Multiply(int a, int b, int k, int x, int y){
+        if(b < x || a > y) return 1;
+        if(a <= x && y <= b) return tree[k];
+        int d = (x + y) / 2;
+        return ((Multiply(a, b, k*2, x, d) % 1000000007) * (Multiply(a, b, k*2+1, d+1, y) % 1000000007)) % 1000000007; 
     }
 }

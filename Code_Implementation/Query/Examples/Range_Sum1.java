@@ -31,5 +31,6 @@ class Range_Sum1{
             if(x == 1) System.out.println(sum[y-1]);
             else System.out.println(sum[y-1] - sum[x-2]);
         }
+        sc.close();
     }
 }
