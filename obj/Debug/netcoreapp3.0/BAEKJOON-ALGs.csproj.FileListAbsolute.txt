@@ -1,0 +1,3 @@
+C:\Users\user\Documents\GitHub\BAEKJOON-ALGs\obj\Debug\netcoreapp3.0\BAEKJOON-ALGs.csprojAssemblyReference.cache
+C:\Users\user\Documents\GitHub\BAEKJOON-ALGs\obj\Debug\netcoreapp3.0\BAEKJOON-ALGs.AssemblyInfoInputs.cache
+C:\Users\user\Documents\GitHub\BAEKJOON-ALGs\obj\Debug\netcoreapp3.0\BAEKJOON-ALGs.AssemblyInfo.cs
