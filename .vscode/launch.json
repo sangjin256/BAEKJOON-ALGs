@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - Range_Multiply",
+            "request": "launch",
+            "mainClass": "Range_Multiply",
+            "projectName": "BAEKJOON-ALGs_c71bf18b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Range_Sum1",
+            "request": "launch",
+            "mainClass": "Range_Sum1",
+            "projectName": "BAEKJOON-ALGs_c71bf18b"
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",

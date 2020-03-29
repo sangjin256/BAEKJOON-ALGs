@@ -27,9 +27,9 @@ class Range_Sum1{
         }
 
         for(int i = 0; i < m; i++){
-            int a = sc.nextInt(), b = sc.nextInt();
-            if(a == 1) System.out.println(sum[b-1]);
-            else System.out.println(sum[b-1] - sum[a-2]);
+            int x = sc.nextInt(), y = sc.nextInt();
+            if(x == 1) System.out.println(sum[y-1]);
+            else System.out.println(sum[y-1] - sum[x-2]);
         }
     }
 }
