@@ -29,7 +29,7 @@ class Pair implements Comparable<Pair>{
 }
 public class UncertainDestination{
     static ArrayList<ArrayList<Pair>> adj;
-    static final int INF = 1000*50000+2;
+    static final int INF = 1000*50000+4;
     public static void Initialize(int n){
         adj = new ArrayList<ArrayList<Pair>>();
         for(int i = 0; i <= n; i++){

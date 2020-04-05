@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Bubble",
+            "request": "launch",
+            "mainClass": "Bubble",
+            "projectName": "BAEKJOON-ALGs_c71bf18b"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Range_Multiply",
             "request": "launch",
             "mainClass": "Range_Multiply",
