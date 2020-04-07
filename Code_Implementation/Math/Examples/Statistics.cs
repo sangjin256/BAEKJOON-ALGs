@@ -11,12 +11,16 @@ using System;
 
 class Statistic{
     static int[] arr;
+    static int[] arrMode;
     static int sum = 0;
     public static void Main(string[] args){
         int n = int.Parse(Console.ReadLine());
         arr = new int[n];
+        //최빈값을 구하기위한 배열
+        arrMode = new int[8001];
         for(int i = 0; i < n; i++){
             arr[i] = int.Parse(Console.ReadLine());
+            arrMode[arr[i]+4000]++;
             sum += arr[i];
         }
         Array.Sort(arr);
@@ -36,41 +40,17 @@ class Statistic{
 
     //최빈값이 영어로 mode
     public static int Mode(){
-        if(arr.Length == 1) return arr[0];
-        //0번째 자리값으로 전부 초기화해준다.
-        int maxCount = 1;
-        int maxIndex = 0;
-        int count = 0;
-        int sameMax = 0;
-        for(int i = 1; i < arr.Length; i++){
-            if(arr[maxIndex] != arr[i]){
-                count++;
-            }
-            else{
-                maxCount++;
-            }
-            if(maxCount <= count){
-                if(maxCount == count){
-                    sameMax++;
-                    if((i+1) < arr.Length && arr[i+1] != arr[i]) count = 0;
-                }
-                else{
-                    sameMax = 0;
-                    maxCount = count;
-                    maxIndex = i;
-                    count = 0;
-                }
+        int modeIndex = 0;
+        for(int i = 1; i < 8001; i++){
+            if(arrMode[i] > arrMode[modeIndex]) modeIndex = i;
+        }
+        for(int i = modeIndex + 1; i < 8001; i++){
+            if(arrMode[i] == arrMode[modeIndex]){
+                modeIndex = i;
+                break;
             }
         }
-        if(sameMax != 0){
-            int j = maxIndex;
-            while(true){
-                if(arr[maxIndex] != arr[j]) break;
-                j++;
-            }
-            return arr[j];
-        }
-        else return arr[maxIndex];
+        return modeIndex - 4000;
     }
 
     public static int Range(){
