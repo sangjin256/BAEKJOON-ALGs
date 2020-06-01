@@ -65,7 +65,7 @@ public class Tree{
         Console.Write(root.data);
     }
 }
-public class Lecture 
+public class ym 
 {
     public static void Main(string[] args) {
         Tree tree = new Tree();

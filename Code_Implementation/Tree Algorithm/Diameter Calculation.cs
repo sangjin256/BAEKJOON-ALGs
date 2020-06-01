@@ -6,7 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class ud 
 {
     static List<int>[] adj;
     static bool[] visited;
@@ -48,13 +48,14 @@ public class Lecture
         Console.WriteLine(mx);
     }
 
-    //동적계획법을 활용한 알고리즘
-    //임의의 노드를 루트로 지정한 다음 각 서브트리에 대해 따로따로 문제를 품
-    //s는 루트노드를 의미
-    public static int Diameter_Dynamic(int s){
-        toLeaf = new int[8];
-        maxLength = new int[8];
-    }
+    // 미완
+    // //동적계획법을 활용한 알고리즘
+    // //임의의 노드를 루트로 지정한 다음 각 서브트리에 대해 따로따로 문제를 품
+    // //s는 루트노드를 의미
+    // public static void Diameter_Dynamic(int s){
+    //     toLeaf = new int[8];
+    //     maxLength = new int[8];
+    // }
 
     public static void Dfs(int s){
         visited[s] = true;

@@ -9,7 +9,7 @@
 //그 다음 공통 접두사의 다음 글자를 비교하여 문자열의 순서 판단.
 using System;
 
-class Lecture{
+class yd{
     static int[] hash, p;
     static int A = 3, B = 97;
 

@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class ei 
 {
 	//토마토가 들어있는 격자모양 창고
 	static int[,] adj;

@@ -10,7 +10,7 @@
 
 // n이 주어졌을 때, n보다 크고, 2n보다 작거나 같은 소수의 개수를 구하는 프로그램을 작성하시오. 
 using System;
-class Lecture{
+class rur{
     static bool[] eratos = new bool[123456*2+1];
     public static void Main(string[] args){
         ErastosInit();

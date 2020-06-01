@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class uj 
 {
     static List<int>[] adj;
     

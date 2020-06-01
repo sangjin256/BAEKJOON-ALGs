@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture
+public class wb
 {
     static int[,] map;
     //마지막 차원에는 벽을 부쉈는지, 안부쉈는지가 나온다.

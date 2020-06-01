@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class d 
 {
 	public static void Main(string[] args) {
 		//시험 본 과목의 개수 N, 1000보다 작거나 같음

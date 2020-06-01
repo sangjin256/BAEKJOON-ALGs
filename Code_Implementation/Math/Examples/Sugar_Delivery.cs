@@ -20,7 +20,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class ti 
 {
 	public static void Main(string[] args) {
         //n킬로그램

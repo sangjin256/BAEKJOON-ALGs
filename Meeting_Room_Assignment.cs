@@ -16,7 +16,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class j 
 {
 	public static void Main(string[] args) {
         //시작시간과 끝나는시간을 넣을 리스트

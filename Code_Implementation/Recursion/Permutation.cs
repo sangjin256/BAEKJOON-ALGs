@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class tl 
 {
     static Stack<int> permutation = new Stack<int>();
     static int n;

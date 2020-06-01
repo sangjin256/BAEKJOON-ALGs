@@ -12,7 +12,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class wm 
 {
 	//그래프를 표현하기 위해 인접리스트 사용
 	static List<int>[] adj;

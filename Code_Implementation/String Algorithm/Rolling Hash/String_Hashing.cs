@@ -7,7 +7,7 @@
 //문자열 s의 모든 부분 문자열의 해시값을 O(1)시간에 계산할수 있는데 전처리 과정에 O(n)시간이 걸림
 using System;
 
-class Lecture{
+class yh{
     static int[] hash, p;
     static int A = 3, B = 97;
     public static void Main(string[] args){

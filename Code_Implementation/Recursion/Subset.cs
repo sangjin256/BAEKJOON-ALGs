@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class tz 
 {
     //부분집합을 넣을 list
     static Stack<int> subset = new Stack<int>();

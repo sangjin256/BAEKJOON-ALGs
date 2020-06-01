@@ -11,7 +11,7 @@ using System.Linq;
 
 //덱을 사용해야 하므로 덱 구현 후 시도해볼 것!!
 //p.138
-public class Lecture 
+public class qg 
 {
 	public static void Main(string[] args) {
         return;

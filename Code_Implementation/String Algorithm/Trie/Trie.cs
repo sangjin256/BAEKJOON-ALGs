@@ -94,7 +94,7 @@ class Trie{
     }
 }
 
-class Lecture{
+class yx{
     public static void Main(string[] args){
         Trie trie = new Trie();
         trie.Insert("CANAL");

@@ -16,7 +16,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class o 
 {
 	public static void Main(string[] args) {
 		// 첫째 줄에 집의 수 N이 주어진다. N은 1,000보다 작거나 같다. 둘째 줄부터 N개의 줄에 각 집을 빨강으로, 초록으로, 파랑으로 칠하는 비용이 주어진다. 비용은 1,000보다 작거나 같은 자연수이다.

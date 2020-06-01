@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class tj 
 {
     //누적 합 배열
     static int[] sum;

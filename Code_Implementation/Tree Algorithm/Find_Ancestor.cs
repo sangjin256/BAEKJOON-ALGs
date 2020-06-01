@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class uf 
 {
     public class Node{
         public int data;

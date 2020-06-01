@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class wl 
 {
 	static List<int>[] adj;
 	

@@ -12,11 +12,8 @@
 13까지는 3개, 58까지는 5개를 지난다.
 */
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 
-public class Lecture 
+public class ry 
 {
 	public static void Main(string[] args) {
         int n = int.Parse(Console.ReadLine());

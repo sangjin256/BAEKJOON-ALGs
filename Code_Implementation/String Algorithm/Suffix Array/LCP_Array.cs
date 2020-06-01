@@ -5,7 +5,7 @@
 //이 관찰을 기반으로 접미사 길이의 내림차순으로 계산함으로써 효율적으로 LCP배열 구하기 가능
 using System;
 using System.Collections.Generic;
-class Lecture{
+class yj{
     static int[] suffix, LCP;
     static List<(int,int,int)> list = new List<(int, int, int)>();
     public static void Main(string[] args){

@@ -3,7 +3,7 @@
 //ex)문자열 ABABAB의 길이가 3인 서로 다른 부분 문자열은 ABA와 BAB
 using System;
 
-class Lecture{
+class yf{
     static int[] hash, p;
     static int A = 3, B = 97;
     public static void Main(string[] args){

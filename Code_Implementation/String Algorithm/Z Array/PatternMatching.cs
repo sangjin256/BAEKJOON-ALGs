@@ -1,7 +1,7 @@
 //Z알고리즘을 사용한 패턴 매칭 패턴p와 문자열s가 있을 때 p#s의 형태로 만듬
 //z배열의 위치에 대응되는 원소의 값이 p의 길이와 같으면 그곳에 패턴이 있다는 의미
 using System;
-class Lecture{
+class yv{
     static int[] z;
     public static void Main(string[] args){
         string str = Console.ReadLine();

@@ -3,7 +3,7 @@
 //예를 들어, ABACABACABA의 경계는 A, ABA, ABACABA이다.
 //위치 k의 접미사가 경계일 조건은 k + z[k] = (문자열의 길이)인 경우와 동치
 using System;
-class Lecture{
+class yc{
     static int[] z;
     public static void Main(string[] args){
         string str = Console.ReadLine();

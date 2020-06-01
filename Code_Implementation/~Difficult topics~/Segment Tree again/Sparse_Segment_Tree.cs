@@ -55,7 +55,7 @@ class Tree{
     }
 }
 
-class Lecture{
+class if{
     public static void Main(string[] args){
         Tree tree = new Tree(16);
         tree.Add(3, 2);

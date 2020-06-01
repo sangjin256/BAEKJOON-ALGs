@@ -21,7 +21,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class rb 
 {
 	public static void Main(string[] args) {
         //첫째 줄에 X(1 ≤ X ≤ 10,000,000)가 주어진다.

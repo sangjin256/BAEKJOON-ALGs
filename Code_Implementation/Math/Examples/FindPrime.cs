@@ -3,7 +3,7 @@
 // 주어진 수 N개 중에서 소수가 몇 개인지 찾아서 출력하는 프로그램을 작성하시오.
 
 using System;
-class Lecture{
+class rn{
     public static void Main(string[] args){
         int n = int.Parse(Console.ReadLine());
         int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), s => int.Parse(s));
@@ -12,7 +12,7 @@ class Lecture{
             if(PrimeCheck(arr[i])) count++;
         }
 
-        return count;
+        Console.WriteLine(count);
     }
 
     public static bool PrimeCheck(int n){

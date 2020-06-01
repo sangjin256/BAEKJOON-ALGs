@@ -17,7 +17,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class uz 
 {
     static List<int> list = new List<int>();
     public static void Main(string[] args) {

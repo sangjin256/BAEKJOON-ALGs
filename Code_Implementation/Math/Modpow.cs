@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class rf 
 {
 	public static void Main(string[] args) {
         Console.WriteLine(Modpow(2,10,100));

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class qd 
 {
 	public static void Main(string[] args) {
         int[] arr = new int[]{4,5,7,9,6,1,10,9};

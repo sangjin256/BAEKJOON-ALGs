@@ -5,7 +5,7 @@
 //solve(i,j)를 수열 s(i), s(i+1), ..., s(j)를 원소 단위로 쪼개는 최소 비용으로 정의할때 이 문제에 대한 답은 solve(1,n)
 //답을 구하기 위해서는 cost(i,j) + solve(i,p) + solve(p+1,j)를 최소화하는 위치 i <= p < j를 찾아야됨
 using System;
-class Lecture{
+class um{
     static int[] arr = new int[]{2,7,3,2,5};
     static int[,] solve, pos;
     public static void Main(string[] args){

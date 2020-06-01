@@ -16,7 +16,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class td 
 {
     //구간 트리
     static ulong[] tree;

@@ -28,7 +28,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class wn 
 {
 	//땅을 표현하기 위한 배열
 	static int[,] adj;

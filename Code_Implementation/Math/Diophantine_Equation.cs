@@ -9,7 +9,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class em 
 {
 	public static void Main(string[] args) {
         //39x+15y = 12로 가정

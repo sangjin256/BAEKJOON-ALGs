@@ -4,7 +4,7 @@ using System.Collections.Generic;
 //이거 없으면 사용 불가
 using System.Numerics;
 
-public class Lecture 
+public class wg 
 {
     public static void Main(String[] args){
         //벡터 a = (x1,y1) 과 벡터 b = (x2,y2)의 외적(x1y2-x2y1)의 값을 이용하면

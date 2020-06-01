@@ -19,6 +19,6 @@ class Hanoi{
 
     }
 
-    public static void Hanoi(int n, int from, int by, int to){
+    public static void Hanoi_(int n, int from, int by, int to){
     }
 }

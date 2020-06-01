@@ -23,7 +23,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class m 
 {
 	public static void Main(string[] args) {
 		//삼각형의 크기가 주어짐(1~500)

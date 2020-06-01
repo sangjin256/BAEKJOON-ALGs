@@ -6,7 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class wr 
 {	
     public static void Main(string[] args) {
         int[,] grid = new int[,]{{3,7,9,2,7},

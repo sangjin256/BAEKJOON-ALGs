@@ -4,7 +4,7 @@
 using System;
 using System.IO;
 
-class Lecture{
+class ya{
     public static void Main(string[] args){
         string str1 = Console.ReadLine();
         string str2 = Console.ReadLine();

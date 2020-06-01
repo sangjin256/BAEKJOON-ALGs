@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class we 
 {
     static int[] coins;
 	public static void Main(string[] args) {

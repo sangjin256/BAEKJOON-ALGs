@@ -17,7 +17,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class i 
 {
 	public static void Main(string[] args) {
 		// 1보다 크거나 같고, 10^6보다 작거나 같은 정수 N이 주어진다.

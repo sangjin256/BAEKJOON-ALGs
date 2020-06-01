@@ -7,7 +7,7 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 
-public class Lecture 
+public class rv 
 {
 	static int count0;
 	static int count1;

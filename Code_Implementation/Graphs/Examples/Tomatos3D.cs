@@ -6,7 +6,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-public class Lecture
+public class waa
 {
     //3차원 창고이므로 3차원 배열을 만들어준다.
     static int[,,] adj;

@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class ek 
 {
     //각 원소에 대해 경로상의 다음 원소 저장하는 배열(원소가 대푯값이면 자기자신 저장)
     static int[] link;
@@ -31,7 +31,7 @@ public class Lecture
     //경로상의 모든 원소가 대푯값을 바로 가리키게 됨
     //이 방법을 사용하면 안되는 경우도 있으므로 확인후 사용
     static int FindWithCompression(int x){
-        if(x = link[x]) return x;
+        if(x == link[x]) return x;
         return link[x] = FindWithCompression(link[x]);
     }
     //same함수는 두 원소 a와 b가 같은 집합에 속하는지 확인

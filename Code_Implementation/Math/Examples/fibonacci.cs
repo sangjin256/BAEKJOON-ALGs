@@ -10,7 +10,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class rc 
 {
 	public static void Main(string[] args) {
 		//n번째 피보나치 수, n은 90보다 작거나 같은 자연수

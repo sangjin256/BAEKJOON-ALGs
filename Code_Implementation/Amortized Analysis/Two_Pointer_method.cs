@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class qh 
 {
 	public static void Main(string[] args) {
         //양의 정수 n개로 이루어진 배열

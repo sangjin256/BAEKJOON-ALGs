@@ -8,7 +8,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class eb 
 {
     static int[,] adj;
     static int[,] adj_w;

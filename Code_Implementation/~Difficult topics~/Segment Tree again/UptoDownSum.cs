@@ -4,7 +4,7 @@
 
 using System;
 
-class Lecture{
+class ig{
     public static int[] tree;
     public static int[] arr;
     public static void Main(string[] args){

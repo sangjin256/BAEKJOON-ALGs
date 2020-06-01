@@ -3,7 +3,7 @@
 //ex) ABCABABCA내에서 패턴 ABC가 등장하는 위치는 0,5로 2개이다.
 using System;
 
-class Lecture{
+class yg{
     static int[] hash, p;
     static int A = 3, B = 97;
 

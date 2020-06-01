@@ -5,7 +5,7 @@
 // 1. 길이가 짧은 것부터
 // 2. 길이가 같으면 사전 순으로
 using System;
-
+using System.Linq;
 class WordSort{
     public static void Main(string[] args){
         int n = int.Parse(Console.ReadLine());
@@ -14,26 +14,16 @@ class WordSort{
             strarr[i] = Console.ReadLine();
         }
 
+        strarr = strarr.Distinct().ToArray();
+
         Array.Sort(strarr, (a, b) => {
                                       if(a.Length < b.Length) return -1;
                                       else if(a.Length > b.Length) return 1;
-                                      else return StringComparison(a, b);
+                                      else return String.Compare(a, b);
         });
 
         for(int i = 0; i < strarr.Length; i++){
             Console.WriteLine(strarr[i]);
         }
     }
-
-    public static int StringComparison(string a, string b){
-        int i;
-        for(i = 0; i < a.Length; i++){
-            if(a[i] != b[i]) break;
-        }
-        if(a[i] > b[i]) return 1;
-        else if(a[i] < b[i]) return -1;
-        else return 0;
-    }
 }
-
-class 

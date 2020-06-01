@@ -16,7 +16,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class m 
 {
 	public static void Main(string[] args) {
 		// 테스트 케이스의 개수 n개 입력

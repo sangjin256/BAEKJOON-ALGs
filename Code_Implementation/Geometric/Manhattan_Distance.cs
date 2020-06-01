@@ -9,7 +9,7 @@ using System.Collections.Generic;
 //이거 없으면 사용 불가
 using System.Numerics;
 
-public class Lecture 
+public class wf 
 {
     public static void Main(String[] args){
         Complex a = new Complex(1,3);

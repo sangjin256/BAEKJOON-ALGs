@@ -9,7 +9,7 @@
 //cost(a,c) + cost(b,d) <= cost(a,d) + cost(b,c)
 //이때 pos(i,j) <= pos(i+1,j)이 모든 i,j에 대해 성립한다는 것도 보장됨
 using System;
-class Lecture{
+class un{
     static int[] arr = new int[]{2,3,1,2,2,3,4,1};
     static int[,] solve;
     public static void Main(string[] args){

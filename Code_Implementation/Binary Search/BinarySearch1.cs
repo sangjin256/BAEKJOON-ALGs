@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class qz 
 {
 	public static void Main(string[] args) {
         int[] a = new int[]{0,1,1,3,3,3,5,6,7,8};

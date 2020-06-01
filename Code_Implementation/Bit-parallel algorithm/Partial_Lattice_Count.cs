@@ -8,7 +8,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class qm 
 {
     //bitarray로 만들어도 됨(더 빠른지는 아직 미확인)
     static int[] row = {Convert.ToByte("01001",2),

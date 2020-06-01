@@ -20,7 +20,7 @@
 
 // 김우현을 위해 x지점부터 정확히 y지점으로 이동하는데 필요한 공간 이동 장치 작동 횟수의 최솟값을 구하는 프로그램을 작성하라.
 using System;
-class Lecture{
+class ro{
     public static void Main(string[] args){
         int n = int.Parse(Console.ReadLine());
         for(int k = 0; k < n; k++){

@@ -22,7 +22,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+class c 
 {
 	public static void Main(string[] args) {
 		//첫째 줄에 사람의 수(1부터 1000까지) 둘째줄에는 각 사람이 돈을 인출하는데 걸리는 시간이 주어짐

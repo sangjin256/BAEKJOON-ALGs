@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class k 
 {
 	public static void Main(string[] args) {
 		int[] numbers = Array.ConvertAll(Console.ReadLine().Split(' '), s => int.Parse(s));

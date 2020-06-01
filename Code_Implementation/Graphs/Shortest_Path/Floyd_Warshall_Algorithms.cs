@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class ecf 
 {
 	static int[,] adj;
 	//[a,b]일때 a에서 b까지의 거리를 담는 배열

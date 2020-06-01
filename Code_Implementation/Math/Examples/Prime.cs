@@ -8,7 +8,7 @@
 
 // 합은 620이고, 최솟값은 61이 된다.
 using System;
-class Lecture{
+class ty{
     public static void Main(string[] args){
         int x = int.Parse(Console.ReadLine());
         int y = int.Parse(Console.ReadLine());

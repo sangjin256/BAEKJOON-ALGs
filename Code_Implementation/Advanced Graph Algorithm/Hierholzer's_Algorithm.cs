@@ -16,7 +16,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections;
 
-public class Lecture 
+public class zxcv 
 {
     static List<int>[] adj;
     //처음에 노드만 하나 있고 간선이 없는 빈 회로를 만들 그래프

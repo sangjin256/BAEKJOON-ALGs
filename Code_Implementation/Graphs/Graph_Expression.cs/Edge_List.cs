@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class eh 
 {
 	//가중치가 없는 간선리스트
 	//(int,int)방식은 c# 7.0부터 가능 그 전 버전은 Tuple<int,int,int>로 해줘야함

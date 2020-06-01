@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class eg 
 {
 	//인접 리스트(Adjacency list)로 표현 (가중치 x)
 	static List<int>[] adj;

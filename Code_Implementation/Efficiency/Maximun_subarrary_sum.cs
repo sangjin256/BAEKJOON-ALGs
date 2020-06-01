@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class ws 
 {
 	public static void Main(string[] args) {
         int[] arr = {-1,2,4,-3,5,2,-5,2};

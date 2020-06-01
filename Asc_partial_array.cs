@@ -12,7 +12,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class v 
 {
 	public static void Main(string[] args) {
 		//수열 arr의 크기 n(1<=n<=1000)이 주어짐

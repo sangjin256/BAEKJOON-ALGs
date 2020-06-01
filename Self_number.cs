@@ -1,5 +1,6 @@
 /*
 # 4673
+
 셀프 넘버는 1949년 인도 수학자 D.R. Kaprekar가 이름 붙였다.
 
 양의 정수 n에 대해서 d(n)을 n과 n의 각 자리수를 더하는 함수라고 정의하자.
@@ -20,7 +21,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class r 
 {
 	static int[] selfnumber = new int[10001];
 	public static void Main(string[] args) {

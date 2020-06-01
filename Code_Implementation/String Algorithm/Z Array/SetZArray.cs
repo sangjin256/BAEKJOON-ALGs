@@ -6,7 +6,7 @@
 //z배열의 값을 효율적으로 계산하기 위해 구간 [x,y]를 관리하며 이때 s[x...y] 는 s의
 //접두사이고 z[x]의 값은 계산되어있으며, y의 값은 가능한 값중 최대여야 함
 using System;
-class Lecture{
+class yb{
     static int[] z;
     public static void Main(string[] args){
         string str = Console.ReadLine();

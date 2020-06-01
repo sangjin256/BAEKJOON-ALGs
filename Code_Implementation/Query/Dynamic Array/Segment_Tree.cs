@@ -7,7 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class ts 
 {	
     static int[] tree;
     static int[] arr;

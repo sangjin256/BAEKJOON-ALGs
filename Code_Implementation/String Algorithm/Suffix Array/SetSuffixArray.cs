@@ -5,7 +5,7 @@
 //그러나 일반 sort함수 사용도 충분히 빠름
 using System;
 using System.Collections.Generic;
-class Lecture{
+class yz{
     //정렬시 원래 인덱스값이 유지되지 않으므로 원래 인덱스값을 Item3에 넣어준다.
     static List<(int,int,int)> list = new List<(int, int, int)>();
     static int[] suffix;

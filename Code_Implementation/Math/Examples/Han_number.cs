@@ -12,7 +12,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class rm 
 {
 	public static void Main(string[] args) {
 		// 1000보다 작거나 같은 자연수 n 입력

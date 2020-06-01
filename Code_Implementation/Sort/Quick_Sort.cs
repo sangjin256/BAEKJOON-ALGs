@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class tv 
 {
     static int[] a;
 	public static void Main(string[] args) {

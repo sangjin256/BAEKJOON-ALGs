@@ -2,7 +2,7 @@
 //구간 [a,b]에 속한 원소 중 그 값이 x인 원소가 몇 개인지를 효율적으로 세야하는 자료구조
 using System;
 using System.Collections.Generic;
-class Lecture{
+class is{
     static Dictionary<int,int>[] dic;
     static int[] arr = new int[]{3,1,2,3,1,1,1,2};
     public static void Main(string[] args){

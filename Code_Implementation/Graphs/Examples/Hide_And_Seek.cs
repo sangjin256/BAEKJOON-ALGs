@@ -15,7 +15,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-public class Lecture
+public class et
 {
     //수빈이의 위치와 동생의 위치를 static으로 선언해준다.
     //Dfs에서 둘이 만났을때의 위치를 알아야하기 때문이다.

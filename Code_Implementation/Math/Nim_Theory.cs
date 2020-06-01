@@ -11,7 +11,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class rh 
 {
     enum States {WiningState, LosingState};
     [Flags]

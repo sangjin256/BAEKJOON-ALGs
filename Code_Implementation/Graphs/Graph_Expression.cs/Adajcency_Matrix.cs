@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class ef 
 {
 	static int[,] adj;
 	public static void Main(string[] args) {

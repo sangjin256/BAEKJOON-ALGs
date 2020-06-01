@@ -8,7 +8,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class ej 
 {
     //각 원소에 대해 경로상의 다음 원소 저장하는 배열(원소가 대푯값이면 자기자신 저장)
     static int[] link;

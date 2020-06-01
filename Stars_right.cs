@@ -17,7 +17,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class t 
 {
 	public static void Main(string[] args) {
 		int n = int.Parse(Console.ReadLine());

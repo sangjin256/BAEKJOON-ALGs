@@ -16,35 +16,35 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Node{
+public class Node_{
     public char data;
-    public Node left, right;
-    public Node(char data){
+    public Node_ left, right;
+    public Node_(char data){
         this.data = data;
     }
 }
 
-public class Tree{
+public class Tree_{
     //루트 노드. 처음엔 null상태이다.
-    public Node root;
+    public Node_ root;
     public void Add(char data, char leftData, char rightData){
         if(root == null){
-            if(data != '.') root = new Node(data);
-            if(leftData != '.') root.left = new Node(leftData);
-            if(rightData != '.') root.right = new Node(rightData);
+            if(data != '.') root = new Node_(data);
+            if(leftData != '.') root.left = new Node_(leftData);
+            if(rightData != '.') root.right = new Node_(rightData);
         }
         //최초 상태가 아니면 어디에 들어가야하는지 찾는다.
         else Search(root, data, leftData, rightData);
     }
     //재귀를 사용해서 찾는다.
-    private void Search(Node root, char data, char leftData, char rightData){
+    private void Search(Node_ root, char data, char leftData, char rightData){
         //도착 노드가 null이면 종료하고 돌아간다.
         if(root == null) return;
         //위치를 찾으면
         else if(root.data == data){
             //'.'이 아닌 경우에 한해서 좌, 우 노드 생성 후 데이터 삽입
-            if(leftData != '.') root.left = new Node(leftData);
-            if(rightData != '.') root.right = new Node(rightData);
+            if(leftData != '.') root.left = new Node_(leftData);
+            if(rightData != '.') root.right = new Node_(rightData);
         }
         //아직 못찾았고, 탐색할 노드들이 남아있으면
         else{
@@ -52,27 +52,27 @@ public class Tree{
             Search(root.right, data, leftData, rightData);
         }
     }
-    public void Preorder(Node root){
+    public void Preorder(Node_ root){
         Console.Write(root.data);
         if(root.left != null) Preorder(root.left);
         if(root.right != null) Preorder(root.right);
     }
-    public void Inorder(Node root){
+    public void Inorder(Node_ root){
         if(root.left != null) Inorder(root.left);
         Console.Write(root.data);
         if(root.right != null) Inorder(root.right);
     }
-    public void Postorder(Node root){
+    public void Postorder(Node_ root){
         if(root.left != null) Postorder(root.left);
         if(root.right != null) Postorder(root.right);
         Console.Write(root.data);
     }
 }
-public class Lecture 
+public class ub 
 {
     public static void Main(string[] args) {
         int n = int.Parse(Console.ReadLine());
-        Tree tree = new Tree();
+        Tree_ tree = new Tree_();
         for(int i = 0; i < n; i++){
         	char[] ch = Array.ConvertAll(Console.ReadLine().Split(' '), s => char.Parse(s));
             tree.Add(ch[0], ch[1], ch[2]);

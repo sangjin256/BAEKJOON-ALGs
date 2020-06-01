@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class l 
 {
 	public static void Main(string[] args) {
 		// 첫째 줄에 8개 숫자가 일렬로 주어짐 1~8까지의 숫자 한번씩 등장

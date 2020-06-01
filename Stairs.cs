@@ -27,7 +27,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class s 
 {
 	public static void Main(string[] args) {
 		//계단의 개수 입력, 300 이하의 자연수

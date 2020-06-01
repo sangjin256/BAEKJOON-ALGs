@@ -5,7 +5,7 @@
 //먼저 집합 A = {2,4}와 B = {5,9}로 나누고 두 개의 목록 SA = {0,2,4,6} SB = {0,5,9,14}를 만듬
 //그리고 두 포인터 알고리즘을 이용하여 합이 x가 되는 경우를 SA와 SB에서 만들어낼 수 있는지 검사함
 using System;
-class Lecture{
+class ia{
     //배열이 오름차순으로 고정되어있다고 가정. 그렇지 않을 경우 CalcSubarray함수에서 sort해주어야 함
     static int[] arr = new int[]{2,4,5,9};
     const  int X = 15;

@@ -81,7 +81,7 @@ class Treap{
     }
 }
 
-class Lecture{
+class il{
     public static void Main(string[] args){
         Treap treap = new Treap();
         treap.Merge(ref treap.root, treap.root, new Node(1));

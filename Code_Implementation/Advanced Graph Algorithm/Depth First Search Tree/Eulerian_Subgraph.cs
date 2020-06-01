@@ -20,7 +20,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections;
 
-public class Lecture 
+public class asdadasfff 
 {   
     //기본 그래프
     static List<int>[] adj;

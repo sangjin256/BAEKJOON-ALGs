@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class rx 
 {
 	public static void Main(string[] args) {
 		// 몇번째 피보나치 수열을 출력할지를 입력받는다. (n을 집어넣으면 n+1값이 나옴)

@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-public class Lecture 
+public class ez 
 {
 	static List<(int,int,int)> edges = new List<(int,int,int)>();
 	//MaxValue에서 덧셈을 하면 오버플로우가 일어나므로 일정량을 빼준다.

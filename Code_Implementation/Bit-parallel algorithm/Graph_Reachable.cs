@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class qb 
 {
     static List<int>[] adj = new List<int>[6];
 	public static void Main(string[] args) {

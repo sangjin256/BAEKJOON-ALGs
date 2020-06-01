@@ -24,7 +24,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class ri 
 {
 	public static void Main(string[] args) {
         long[] value = Array.ConvertAll(Console.ReadLine().Split(' '), s => long.Parse(s));

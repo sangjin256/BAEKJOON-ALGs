@@ -26,7 +26,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class eu 
 {
 	//집의 존재유무를 표현하기 위한 2차원배열
 	static int[,] adj;

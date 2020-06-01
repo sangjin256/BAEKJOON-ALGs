@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class asd 
 {
     static List<int>[] adj;
     public static void Main(string[] args) {

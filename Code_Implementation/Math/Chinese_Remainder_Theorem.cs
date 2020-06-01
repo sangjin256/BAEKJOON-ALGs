@@ -14,7 +14,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class en 
 {
 	public static void Main(string[] args) {
         //x = 3 mod 5

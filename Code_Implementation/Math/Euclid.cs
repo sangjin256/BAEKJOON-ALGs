@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class rz 
 {
 	public static void Main(string[] args) {
         int a = 30, b = 12;

@@ -11,7 +11,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class rg 
 {
 	public static void Main(string[] args) {
         //마지막 bool 매개변수는 m이 소수일 경우 true로 해줌
@@ -24,7 +24,7 @@ public class Lecture
     //inv(m)(x) = x^(q(m)-1)
     //페르마의 소정리 사용시 inv(m)(x) = x^(m-2)
     public static int Inv_Formula(int x, int m, bool prime){
-        if(prime = false){    
+        if(prime == false){    
             return Modpow(x, EulerTotientFunction(m)-1, m);
         }
         else{

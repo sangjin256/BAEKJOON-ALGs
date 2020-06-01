@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class wz 
 {
 	static List<int>[] adj;
 	public static void Main(string[] args) {
@@ -17,7 +17,7 @@ public class Lecture
 	}
 	
 	static bool[] visited = new bool[100];
-	static int dfs(int s){
+	static void dfs(int s){
 		if(visited[s]) return;
 		visited[s] = true;
 		//노드 s 처리

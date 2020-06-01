@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class tm 
 {
 	public static void Main(string[] args) {
         //소요시간이 짧은 순으로 스케쥴해야 최적해

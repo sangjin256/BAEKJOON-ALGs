@@ -22,7 +22,7 @@ class Pair{
     }
 }
 
-public class Lecture 
+public class ik 
 {
     static char[,] arr= new char[,]{{'A','C','E','A'},
                                     {'B','D','F','D'},

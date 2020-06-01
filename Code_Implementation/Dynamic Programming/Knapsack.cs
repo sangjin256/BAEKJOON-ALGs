@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class wt 
 {	
     public static void Main(string[] args) {
         int[] weights = new int[]{1,3,3,5};

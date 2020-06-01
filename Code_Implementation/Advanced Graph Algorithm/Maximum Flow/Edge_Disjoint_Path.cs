@@ -6,7 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections;
 
-public class Lecture 
+public class qr 
 {
     //x -> y로 가는 간선만 추가해준다.
     static List<int>[] adj;

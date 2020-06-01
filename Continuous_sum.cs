@@ -13,7 +13,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class e 
 {
 	public static void Main(string[] args) {
 		//정수 1<=n<=100000이 주어짐

@@ -2,7 +2,7 @@
 //배열의 범위를 관리하고 이분탐색을 사용
 using System;
 using System.Collections.Generic;
-class Lecture{
+class yk{
     static List<(int,int,int)> list = new List<(int,int,int)>();
     static int[] suffix;
     public static void Main(string[] args){

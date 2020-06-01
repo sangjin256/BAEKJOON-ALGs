@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class ta 
 {	
     static int[] tree;
     static int[] arr;
@@ -49,7 +49,6 @@ public class Lecture
     //배열의 최소 원소가 어느 위치에 있는지를 찾는 함수
     public static int FindElement(){
         int s = 1;
-        int index = 0;
         while(s*2+1 <= tree.Length){
             if(tree[s*2] < tree[s*2+1]){
                 s = s*2;

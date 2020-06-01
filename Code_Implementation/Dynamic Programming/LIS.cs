@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class wy 
 {	
     public static void Main(string[] args) {
         int[] arr = new int[]{6,2,5,1,7,4,8,3};

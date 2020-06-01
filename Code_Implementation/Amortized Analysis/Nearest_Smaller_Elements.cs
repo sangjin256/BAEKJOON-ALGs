@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class qf 
 {
     static Stack<int> stack = new Stack<int>();
 	public static void Main(string[] args) {

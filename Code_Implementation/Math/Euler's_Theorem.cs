@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class rs 
 {
 	public static void Main(string[] args) {
         Console.WriteLine(EulerTheorem(10));

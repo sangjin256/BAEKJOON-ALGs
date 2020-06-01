@@ -10,7 +10,7 @@
 
 // 작성하시오.
 using System;
-class Lecture{
+class q{
     public static void Main(string[] args){
         int[] HamPrices = new int[3];
         int[] JuicePrices = new int[2];

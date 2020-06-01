@@ -19,7 +19,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class g 
 {
 	public static void Main(string[] args) {
 		//첫 줄에 물품의 수 n(1~100)과 버틸수 있는 무게 k(1~100000)가 주어짐

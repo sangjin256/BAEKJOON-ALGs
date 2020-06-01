@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-public class Lecture 
+class b
 {
 	public static void Main(string[] args) {
 		int[] a = new int[2];

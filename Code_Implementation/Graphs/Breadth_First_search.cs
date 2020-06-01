@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class wj 
 {
 	//큐에 처리할 노드가 시작 노드와의 거리가 증가하는 순서대로 들어간다.
 	static Queue<int> q = new Queue<int>();

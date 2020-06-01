@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-public class Lecture 
+public class ex 
 {
     // 인접 리스트의 형태로 그래프를 저장해준다.
     static List<(int,int)>[] adj;

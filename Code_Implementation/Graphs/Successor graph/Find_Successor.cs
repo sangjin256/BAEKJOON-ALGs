@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Lecture 
+public class ev 
 {
 	//인접 리스트(Adjacency list)로 표현
 	static List<int>[] adj;

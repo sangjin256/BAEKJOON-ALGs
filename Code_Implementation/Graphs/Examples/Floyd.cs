@@ -11,7 +11,7 @@ m(1 ≤ m ≤ 100,000)개의 버스가 있다. 각 버스는 한 번 사용할 �
 using System;
 using System.IO;
 using System.Collections.Generic;
-public class Lecture 
+public class er 
 {
 	static List<(int,int)>[] adj;
 	static long[,] dist;

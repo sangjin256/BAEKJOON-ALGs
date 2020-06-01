@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-public class Lecture 
+public class ih 
 {
 	public static void Main(string[] args) {
         int[] arr = new int[]{5,8,6,3,4,7,2,6,7,1,7,5,6,2,3,2};

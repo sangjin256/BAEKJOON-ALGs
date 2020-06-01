@@ -13,7 +13,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections;
 
-public class Lecture 
+public class weqeeq 
 {
     //체스판
     static int[,] chess;

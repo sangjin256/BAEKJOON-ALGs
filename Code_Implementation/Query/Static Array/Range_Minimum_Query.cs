@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Lecture 
+public class th 
 {
     //min[a,b]는 구간 a~b의 최솟값을 나타냄
     static int[,] min;
