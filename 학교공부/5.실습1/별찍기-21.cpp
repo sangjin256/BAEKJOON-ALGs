@@ -28,12 +28,12 @@ int main(){
         cout << str1 + "\n" + str2 << "\n";
     }
 }
-#include <stdio.h>
-int n;
-int main()
-{
-	scanf("%d", &n);
-	for(int i=0; i<2*n; puts(""),i++)
-        for(int j=0; j<n; j++)
-            printf("%c", (i+j)%2?' ':'*');
-}
+// #include <stdio.h>
+// int n;
+// int main()
+// {
+// 	scanf("%d", &n);
+// 	for(int i=0; i<2*n; puts(""),i++)
+//         for(int j=0; j<n; j++)
+//             printf("%c", (i+j)%2?' ':'*');
+// }
