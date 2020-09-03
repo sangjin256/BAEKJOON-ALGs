@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 vector<pair<int,int>> v;
@@ -15,16 +14,10 @@ int main(){
 
     sort(v.begin(), v.end(), [](const pair<int,int> &a, const pair<int,int> &b){
                                     if(a.second == b.second) return a.first < b.first;
-                                    return a.second < b.second;});
+                                    return a.second < b.second;
+    });
 
-    int endtime = 0;
-    int counter = 0;
-    for(auto t : v){
-        if(t.first >= endtime){
-            counter++;
-            endtime = t.second;
-        }
+    for(const auto& p : v){
+        printf("%d %d\n", p.first, p.second);
     }
-
-    printf("%d", counter);
 }
