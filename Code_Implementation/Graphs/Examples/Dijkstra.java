@@ -8,7 +8,6 @@
 import java.io.*;
 import java.util.*;
 public class Dijkstra {
-	//백준에 제출하기 위해 내부클래스로 작성. 자바는 한 파일에 2개의 클래스가 들어갈 수 없다.
 	class Pair implements Comparable<Pair> {
 		public int index;
 		public int distance;
