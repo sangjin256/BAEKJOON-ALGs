@@ -1,6 +1,12 @@
 #include <bits/stdc++.h>
 
 namespace Quicksort{
+    void swap(int a[], int x, int y){
+        int tmp = a[x];
+        a[x] = a[y];
+        a[y] = tmp;
+    }
+    
     void quicksort(int a[], int left, int right){
         int pl = left;
         int pr = right;
@@ -15,13 +21,7 @@ namespace Quicksort{
         if(left < pr) quicksort(a, left, pr);
         if(pl < right) quicksort(a, pl, right);
     }
-
-    void swap(int a[], int x, int y){
-        int tmp = a[x];
-        a[x] = a[y];
-        a[y] = tmp;
-    }
-
+    
     void quicksort_notrecursive(int a[], int left, int right){
         std::stack<int> lstack;
         std::stack<int> rstack;
