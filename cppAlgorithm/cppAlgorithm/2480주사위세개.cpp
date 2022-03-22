@@ -12,7 +12,6 @@ int main(){
     int dice[3], sameNumCount = 0, sameNum = 0;
     std::cin >> dice[0] >> dice[1] >> dice[2];
     std::sort(dice, dice+3);
-    
     for(int i = 1; i < std::size(dice); i++){
         if(dice[i] == dice[i-1]){
             sameNumCount++;
