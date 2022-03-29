@@ -19,12 +19,6 @@ int main(){
     
     sort(arr, arr+n);
     
-    //2 4 -10 4 -9
-    //-10 -9 2 4 4
-    
-    // 10 9 10 9 10 9
-    // 9 9 9 10 10 10
-    
     for(int i = 1; i < n; i++){
         if(arr[i] != arr[i-1]) order[i] = order[i-1]+1;
         else order[i] = order[i-1];
