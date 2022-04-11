@@ -10,7 +10,7 @@ int gcd(int a, int b){
 int main(){
     int n, *arr, gcdVal = __INT_MAX__;
     std::vector<int> res;
-    scanf("%d", &n);
+    scanf("%d'", &n);
     arr = new int[n];
     
     for(int i = 0; i < n; i++){
