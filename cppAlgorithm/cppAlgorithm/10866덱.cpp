@@ -1,11 +1,17 @@
 #include <iostream>
 #include <string>
-int queue[2000000] = {0}, max = 2000000;
-int front = -1, rear = -1;
 
-void push(int x){
+int deq[10000], max = 10000;
+int front = 5000, rear = 5000;
+
+void push_front(int x){
+    if(front == -1) front = max-1;
+    deq[front--] = x;
+}
+
+void push_back(int x){
     rear = (rear+1) % max;
-    queue[rear] = x;
+    deq[rear] = x;
 }
 
 int empty(){
@@ -13,24 +19,32 @@ int empty(){
     return 0;
 }
 
-int pop(){
+int pop_front(){
     if(empty()) return -1;
     front = (front+1) % max;
-    return queue[front];
+    return deq[front];
+}
+
+int pop_back(){
+    if(empty()) return -1;
+    int res = deq[rear];
+    if(rear == 0) rear = max-1;
+    else rear--;
+    return res;
 }
 
 int size(){
     return rear - front;
 }
 
-int front_(){
+int _front(){
     if(empty()) return -1;
-    return queue[(front+1)%max];
+    return deq[(front+1)%max];
 }
 
-int back_(){
+int _back(){
     if(empty()) return -1;
-    return queue[rear];
+    return deq[rear];
 }
 
 int main(){
@@ -47,11 +61,17 @@ int main(){
             x = std::stoi(cl.substr(temp+1));
             cl = cl.substr(0, temp);
         }
-        if(cl == "push"){
-            push(x);
+        if(cl == "push_front"){
+            push_front(x);
         }
-        else if(cl == "pop"){
-            std::cout << pop() << "\n";
+        if(cl == "push_back"){
+            push_back(x);
+        }
+        else if(cl == "pop_front"){
+            std::cout << pop_front() << "\n";
+        }
+        else if(cl == "pop_back"){
+            std::cout << pop_back() << "\n";
         }
         else if(cl == "size"){
             std::cout << size() << "\n";
@@ -60,10 +80,10 @@ int main(){
             std::cout << empty() << "\n";
         }
         else if(cl == "front"){
-            std::cout << front_() << "\n";
+            std::cout << _front() << "\n";
         }
         else if(cl == "back"){
-            std::cout << back_() << "\n";
+            std::cout << _back() << "\n";
         }
     }
 }
