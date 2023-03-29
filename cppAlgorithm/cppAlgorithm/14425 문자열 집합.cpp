@@ -8,30 +8,29 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int main(){
     int n, m, result = 0;
     size_t tmp;
-    vector<string> S;
+    vector<int> S;
     string str;
+    
+    hash<string> str_hash;
     
     cin >> n >> m;
     for(int i = 0; i < n; i++){
         cin >> str;
-        S.push_back(str);
+        S.push_back((int)str_hash(str));
     }
     
     for(int i = 0; i < m; i++){
         cin >> str;
         
-        for(int j = 0; j < n; j++){
-            if(!S[j].compare(str)){
-                result++;
-                break;
-            }
-        }
+        
+        if(find(S.begin(), S.end(), (int)str_hash(str)) != S.end()) result++;
     }
     
     cout << result << endl;
