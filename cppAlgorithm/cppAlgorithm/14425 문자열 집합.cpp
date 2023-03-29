@@ -14,7 +14,6 @@ using namespace std;
 
 int main(){
     int n, m, result = 0;
-    size_t tmp;
     vector<int> S;
     string str;
     
