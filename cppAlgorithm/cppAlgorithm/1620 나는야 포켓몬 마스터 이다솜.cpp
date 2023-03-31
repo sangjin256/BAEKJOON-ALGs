@@ -12,17 +12,16 @@
 using namespace std;
 
 int main(){
+    ios_base::sync_with_stdio(false); cout.tie(NULL); cin.tie(NULL);
     int n, m, index;
-    char *str;
-    char* arr[100001] = {};
+    string str;
+    string arr[100001] = {};
     unordered_map<string, int> hashPok;
     
-    scanf("%d %d", &n, &m);
-    //cin >> n >> m;
+    cin >> n >> m;
     
     for(int i = 1; i <= n; i++){
-        str = new 
-        scanf("%c", str);
+        cin >> str;
         hashPok.insert({str, i});
         arr[i] = str;
     }
